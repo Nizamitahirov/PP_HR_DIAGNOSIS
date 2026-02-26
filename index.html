@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="az" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>PashaPay — HR Departament Auditi 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+[data-theme="dark"]{
+  --bg:#060608;--bg2:#0d0d10;--bg3:#141418;--bg4:#1c1c22;--bg5:#232329;
+  --text:#F2EDE6;--text2:#9990a0;--text3:#52505a;
+  --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.1);
+  --nav-bg:rgba(6,6,8,0.97);--shadow:0 20px 60px rgba(0,0,0,.7);
+  --grid-c:rgba(255,255,255,0.025);--chart-grid:rgba(255,255,255,.05);
+  --tick:rgba(255,255,255,.4);
+}
+[data-theme="light"]{
+  --bg:#FAF8F5;--bg2:#FFFFFF;--bg3:#F3F0EB;--bg4:#EAE6DF;--bg5:#DDD8CE;
+  --text:#1A1510;--text2:#6B6258;--text3:#A09888;
+  --border:rgba(0,0,0,0.07);--border2:rgba(0,0,0,0.13);
+  --nav-bg:rgba(250,248,245,0.97);--shadow:0 20px 60px rgba(0,0,0,.1);
+  --grid-c:rgba(0,0,0,0.03);--chart-grid:rgba(0,0,0,.07);
+  --tick:rgba(0,0,0,.5);
+}
+:root{
+  --red:#E8001D;--orange:#FF5200;--amber:#FF9600;--gold:#FFD100;
+  --ok:#22C55E;--warn:#FF9500;--fail:#E8001D;
+  --grad:linear-gradient(135deg,#E8001D 0%,#FF5200 50%,#FF9600 100%);
+  --font:'Montserrat',sans-serif;--mono:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13.5px;line-height:1.65;overflow-x:hidden;transition:background .35s,color .35s;}
+
+/* Progress */
+#prog{position:fixed;top:0;left:0;height:3px;background:var(--grad);z-index:9999;width:0;}
+
+/* Nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:300;background:var(--nav-bg);backdrop-filter:blur(28px);border-bottom:1px solid var(--border);height:58px;display:flex;align-items:center;padding:0 56px;gap:0;}
+.nav-logo{font-weight:900;font-size:14px;letter-spacing:3.5px;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-right:40px;white-space:nowrap;}
+.nav-links{display:flex;gap:24px;flex:1;overflow:hidden;}
+.nav-links a{color:var(--text3);text-decoration:none;font-size:10px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;transition:color .2s;white-space:nowrap;}
+.nav-links a:hover{color:var(--orange);}
+.theme-btn{margin-left:auto;display:flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border2);border-radius:100px;padding:5px 14px;font-size:11px;font-weight:700;color:var(--text2);cursor:pointer;transition:all .2s;white-space:nowrap;font-family:var(--font);}
+.theme-btn:hover{border-color:var(--orange);color:var(--orange);}
+
+/* Hero */
+.hero{min-height:100vh;padding:112px 80px 80px;position:relative;overflow:hidden;display:grid;grid-template-columns:1.1fr 0.9fr;gap:72px;align-items:center;}
+.hero-bg{position:absolute;inset:0;z-index:0;background-image:linear-gradient(var(--grid-c) 1px,transparent 1px),linear-gradient(90deg,var(--grid-c) 1px,transparent 1px);background-size:56px 56px;}
+.hero-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 60% 40%,rgba(232,0,29,.08),transparent 70%);}
+.hero-bg::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 60%,var(--bg) 100%);z-index:1;}
+.hero-left,.hero-right{position:relative;z-index:2;}
+.kicker{display:inline-flex;align-items:center;gap:9px;background:rgba(232,0,29,.08);border:1px solid rgba(232,0,29,.22);color:var(--red);font-size:9.5px;font-weight:800;letter-spacing:2.8px;text-transform:uppercase;padding:6px 14px;margin-bottom:28px;}
+.kicker-dot{width:6px;height:6px;background:var(--red);border-radius:50%;animation:blink 1.8s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.2;transform:scale(.6)}}
+h1.hero-title{font-weight:900;font-size:clamp(52px,6vw,86px);line-height:.88;letter-spacing:-1px;margin-bottom:8px;}
+h1.hero-title .grad{display:block;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-sub{font-size:13px;color:var(--text2);max-width:480px;line-height:1.75;margin:22px 0 36px;font-weight:400;}
+.hero-pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:34px;}
+.pill{display:flex;align-items:center;gap:7px;padding:6px 14px;background:var(--bg3);border:1px solid var(--border2);font-size:11px;font-weight:700;letter-spacing:.4px;}
+.pill-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);background:var(--border);gap:1px;border:1px solid var(--border);}
+.hs{background:var(--bg);padding:20px 22px;}
+.hs-n{font-weight:900;font-size:36px;line-height:1;margin-bottom:4px;}
+.hs-l{font-size:9.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text3);}
+.hs-ok .hs-n{color:var(--ok);}
+.hs-w .hs-n{color:var(--warn);}
+.hs-f .hs-n{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+
+/* Score card */
+.score-card{background:var(--bg2);border:1px solid var(--border2);position:relative;overflow:hidden;}
+.score-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--grad);}
+.score-card::after{content:'';position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(232,0,29,.07),transparent 70%);top:-80px;right:-80px;pointer-events:none;}
+.sc-inner{padding:38px 38px 32px;}
+.sc-eyebrow{font-size:9.5px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--text3);margin-bottom:22px;}
+.sc-verdict{display:inline-block;background:rgba(232,0,29,.1);border:1px solid rgba(232,0,29,.28);color:var(--red);font-size:10px;font-weight:800;letter-spacing:2px;padding:5px 13px;text-transform:uppercase;margin-bottom:26px;}
+.sc-bars{display:flex;flex-direction:column;gap:11px;margin-top:10px;}
+.sc-bar-row{display:flex;align-items:center;gap:12px;}
+.sc-bar-lbl{font-size:10px;font-weight:700;color:var(--text3);width:72px;letter-spacing:.4px;}
+.sc-bar-track{flex:1;height:5px;background:var(--bg4);}
+.sc-bar-fill{height:100%;transition:width 1.4s cubic-bezier(.4,0,.2,1);}
+.sc-bar-val{width:26px;font-family:var(--mono);font-size:11px;text-align:right;}
+.sc-footer{margin-top:22px;padding-top:18px;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-size:10px;color:var(--text3);font-weight:500;}
+
+/* Sections */
+section{padding:80px 80px;}
+.eyebrow{font-size:9.5px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:8px;}
+.sec-title{font-weight:900;font-size:clamp(32px,3vw,50px);letter-spacing:-1px;line-height:.95;margin-bottom:44px;}
+hr.div{height:1px;background:var(--border);margin:0 80px;border:none;}
+.hl-box{background:linear-gradient(135deg,rgba(232,0,29,.05),rgba(255,82,0,.02));border:1px solid rgba(232,0,29,.16);border-left:4px solid var(--red);padding:24px 32px;margin-bottom:44px;}
+.hl-box p{font-size:13px;color:var(--text2);line-height:1.8;}
+.hl-box strong{color:var(--text);}
+
+/* Summary strip */
+.sum-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border:1px solid var(--border);margin-bottom:36px;}
+.sc2{background:var(--bg2);padding:28px 24px;position:relative;transition:background .2s;}
+.sc2:hover{background:var(--bg3);}
+.sc2::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.sc2-ok::before{background:var(--ok);}
+.sc2-w::before{background:var(--warn);}
+.sc2-f::before{background:var(--fail);}
+.sc2-i::before{background:var(--amber);}
+.sc2-n{font-weight:900;font-size:56px;line-height:1;margin-bottom:4px;}
+.sc2-ok .sc2-n{color:var(--ok);}
+.sc2-w .sc2-n{color:var(--warn);}
+.sc2-f .sc2-n{color:var(--fail);}
+.sc2-i .sc2-n{color:var(--amber);}
+.sc2-l{font-size:10px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--text3);}
+.sc2-d{font-size:11.5px;color:var(--text3);margin-top:6px;}
+.stat-bar{display:flex;height:8px;margin-bottom:52px;border:1px solid var(--border);}
+
+/* Charts */
+.charts-wrap{display:grid;grid-template-columns:40fr 60fr;gap:20px;margin-bottom:52px;}
+.chart-box{background:var(--bg2);border:1px solid var(--border);padding:34px;display:flex;flex-direction:column;}
+.chart-box-title{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:22px;}
+.chart-canvas-wrap{flex:1;display:flex;align-items:center;justify-content:center;}
+
+/* Category Overview Grid */
+.cat-overview{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:52px;}
+.cov{background:var(--bg2);border:1px solid var(--border);padding:20px;transition:border-color .2s,transform .2s;}
+.cov:hover{border-color:rgba(232,0,29,.28);transform:translateY(-2px);}
+.cov-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;}
+.cov-name{font-size:11.5px;font-weight:700;line-height:1.35;}
+.cov-mini-bars{display:flex;flex-direction:column;gap:6px;}
+.cov-br{display:flex;align-items:center;gap:8px;}
+.cov-bn{font-size:9px;color:var(--text3);width:42px;font-weight:700;text-transform:uppercase;}
+.cov-bt{flex:1;height:3px;background:var(--bg4);}
+.cov-bf{height:100%;}
+.cov-bv{width:16px;text-align:right;font-family:var(--mono);font-size:9.5px;color:var(--text3);}
+.cov-tot{font-size:9.5px;color:var(--text3);letter-spacing:1px;margin-top:10px;text-transform:uppercase;font-weight:600;}
+
+/* Priority Matrix */
+.matrix-box{background:var(--bg2);border:1px solid var(--border);padding:38px;margin-bottom:52px;}
+.matrix-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:12px;margin-top:18px;}
+.mcell{padding:16px 18px;border:1px solid var(--border);}
+.mcell.m-u{background:rgba(232,0,29,.05);border-color:rgba(232,0,29,.2);}
+.mcell.m-p{background:rgba(255,82,0,.04);border-color:rgba(255,82,0,.15);}
+.mcell.m-d{background:rgba(255,149,0,.03);border-color:rgba(255,149,0,.12);}
+.mcell.m-f{background:rgba(34,197,94,.03);border-color:rgba(34,197,94,.12);}
+.mcell-lbl{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin-bottom:10px;}
+.mtag{display:inline-block;font-size:10px;background:var(--bg3);color:var(--text2);padding:3px 8px;margin:2px;border:1px solid var(--border2);font-weight:600;}
+
+/* Detail Tables */
+#detail-tables{padding:0 80px 80px;}
+.dmod{margin-bottom:16px;}
+.dmod-head{display:flex;align-items:center;gap:16px;padding:16px 22px;background:var(--bg2);border:1px solid var(--border);cursor:pointer;font-weight:800;font-size:14.5px;letter-spacing:.3px;transition:background .2s;}
+.dmod-head:hover{background:var(--bg3);}
+.dmod-cnt{margin-left:auto;font-size:11px;color:var(--text3);font-weight:500;}
+.dmod-arr{color:var(--text3);font-size:11px;transition:transform .3s;}
+.dmod-head.collapsed .dmod-arr{transform:rotate(-90deg);}
+.ftbl{width:100%;border-collapse:collapse;border:1px solid var(--border);border-top:none;}
+.ftbl th{text-align:left;padding:10px 16px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text3);background:var(--bg3);border-bottom:1px solid var(--border2);border-right:1px solid var(--border);font-weight:800;}
+.ftbl th:last-child{border-right:none;}
+.ftbl td{padding:12px 16px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);vertical-align:top;font-size:12.5px;}
+.ftbl td:last-child{border-right:none;}
+.ftbl tr:last-child td{border-bottom:none;}
+.ftbl tr:hover td{background:rgba(255,255,255,.015);}
+[data-theme="light"] .ftbl tr:hover td{background:rgba(0,0,0,.015);}
+.fn-func{font-weight:700;}
+.fn-note{color:var(--text2);line-height:1.65;}
+.fn-sub{color:var(--text3);font-size:11px;font-weight:600;margin-top:3px;}
+.sts{display:inline-flex;align-items:center;gap:5px;font-size:9.5px;font-weight:800;letter-spacing:.7px;white-space:nowrap;}
+.sts::before{content:'';width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.sts-ok{color:var(--ok);}
+.sts-ok::before{background:var(--ok);}
+.sts-w{color:var(--warn);}
+.sts-w::before{background:var(--warn);}
+.sts-f{color:var(--fail);}
+.sts-f::before{background:var(--fail);box-shadow:0 0 6px var(--fail);}
+.sts-i{color:var(--amber);}
+.sts-i::before{background:var(--amber);}
+
+/* Recommendations */
+.rec-list{display:flex;flex-direction:column;gap:12px;}
+.rec{display:flex;gap:22px;padding:24px 26px;background:var(--bg2);border:1px solid var(--border);border-left:4px solid;transition:background .2s,box-shadow .2s;}
+.rec:hover{background:var(--bg3);box-shadow:var(--shadow);}
+.rec.p1{border-left-color:var(--red);}
+.rec.p2{border-left-color:var(--orange);}
+.rec.p3{border-left-color:var(--amber);}
+.rec.p4{border-left-color:var(--ok);}
+.rec-n{font-weight:900;font-size:44px;line-height:1;color:var(--border2);min-width:50px;}
+.rec-body h4{font-size:14px;font-weight:700;margin-bottom:6px;}
+.rec-body p{font-size:12.5px;color:var(--text2);line-height:1.75;}
+.rtag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;margin-right:5px;margin-top:8px;}
+
+/* Footer */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:48px 80px;display:flex;align-items:center;justify-content:space-between;}
+.footer-logo{font-weight:900;font-size:28px;letter-spacing:5px;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.footer-info{font-size:11.5px;color:var(--text3);text-align:right;line-height:2;}
+
+/* Animations */
+.fade-up{opacity:0;transform:translateY(20px);transition:opacity .65s,transform .65s;}
+.fade-up.vis{opacity:1;transform:translateY(0);}
+
+/* Status legend */
+.legend{display:flex;gap:24px;margin-bottom:32px;flex-wrap:wrap;}
+.leg-item{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;}
+.leg-dot{width:10px;height:10px;border-radius:50%;}
+
+@media(max-width:1100px){
+  .hero{grid-template-columns:1fr;padding:100px 36px 60px;}
+  section{padding:60px 36px;}
+  #detail-tables{padding:0 36px 60px;}
+  hr.div{margin:0 36px;}
+  nav{padding:0 20px;}
+  .nav-links{display:none;}
+  .sum-strip{grid-template-columns:repeat(2,1fr);}
+  .cat-overview{grid-template-columns:repeat(2,1fr);}
+  .charts-wrap{grid-template-columns:1fr;}
+  footer{padding:36px 36px;flex-direction:column;gap:18px;text-align:center;}
+  .footer-info{text-align:center;}
+}
+@media(max-width:640px){
+  .cat-overview{grid-template-columns:1fr;}
+  .sum-strip{grid-template-columns:1fr;}
+  .matrix-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<nav>
+  <div class="nav-logo">PASHAPAY × HR AUDİT</div>
+  <div class="nav-links">
+    <a href="#summary">Xülasə</a>
+    <a href="#statistics">Statistika</a>
+    <a href="#governance">Governance</a>
+    <a href="#recruitment">İşə Qəbul</a>
+    <a href="#labour">Əmək M</a>
+    <a href="#payroll">Əmək Haqqı</a>
+    <a href="#leave">Məzuniyyət</a>
+    <a href="#ld">L&D</a>
+    <a href="#engagement">Engagement</a>
+    <a href="#details">Tam Cədvəl</a>
+    <a href="#recommendations">Tövsiyələr</a>
+  </div>
+  <button class="theme-btn" onclick="toggleTheme()" id="tbtn">
+    <span id="ticon">🌙</span>&nbsp;<span id="tlbl">Dark</span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-left">
+    <div class="kicker"><div class="kicker-dot"></div>Məxfi · Yalnız Rəhbərlik Üçün · 2025</div>
+    <h1 class="hero-title">
+      <span>HR DEP.</span>
+      <span class="grad">KOMPLEKS</span>
+      <span>AUDIT</span>
+    </h1>
+    <p class="hero-sub">PashaPay MMC İnsan Resursları departamentinin əhatəli auditi: siyasət boşluqları, qanunvericiliyə uyğunluq, sistem vəziyyəti, performans idarəetməsi, əmək münasibətləri, əmək haqqı, məzuniyyət, təlim & inkişaf, SƏTƏM, işçi məşğulluğu — 16 əsas sahə üzrə 200+ maddə.</p>
+    <div class="hero-pills">
+      <div class="pill"><div class="pill-dot" style="background:var(--fail)"></div>Siyasət Boşluqları</div>
+      <div class="pill"><div class="pill-dot" style="background:var(--warn)"></div>HRIS Qeyri-funksionallığı</div>
+      <div class="pill"><div class="pill-dot" style="background:var(--amber)"></div>AZ ƏM Uyğunsuzluqları</div>
+    </div>
+    <div class="hero-stats">
+      <div class="hs hs-ok"><div class="hs-n" id="cntOk">0</div><div class="hs-l">Uyğun</div></div>
+      <div class="hs hs-w"><div class="hs-n" id="cntW">0</div><div class="hs-l">Qismən</div></div>
+      <div class="hs hs-f"><div class="hs-n" id="cntF">0</div><div class="hs-l">Boşluq/Risk</div></div>
+    </div>
+  </div>
+  <div class="hero-right fade-up">
+    <div class="score-card">
+      <div class="sc-inner">
+        <div class="sc-eyebrow">Ümumi HR Governance Balı</div>
+        <canvas id="speedoCanvas" width="280" height="160" style="display:block;margin:0 auto;"></canvas>
+        <div style="text-align:center;margin-top:-10px;margin-bottom:18px;">
+          <div style="font-weight:900;font-size:54px;line-height:1;color:var(--warn);" id="speedoVal">0</div>
+          <div style="font-size:11px;color:var(--text3);font-weight:700;letter-spacing:2px;">/ 100</div>
+        </div>
+        <div style="display:flex;justify-content:center;margin-bottom:22px;">
+          <div class="sc-verdict">⚠ Proseslərin inkişaf etməsi kritik əhəmiyyətlidir</div>
+        </div>
+        <div class="sc-bars">
+          <div class="sc-bar-row"><span class="sc-bar-lbl">Uyğun</span><div class="sc-bar-track"><div class="sc-bar-fill" style="width:0%;background:var(--ok);" data-w="55"></div></div><span class="sc-bar-val" style="color:var(--ok)" id="barOk">—</span></div>
+          <div class="sc-bar-row"><span class="sc-bar-lbl">Qismən</span><div class="sc-bar-track"><div class="sc-bar-fill" style="width:0%;background:var(--warn);" data-w="30"></div></div><span class="sc-bar-val" style="color:var(--warn)" id="barW">—</span></div>
+          <div class="sc-bar-row"><span class="sc-bar-lbl">Boşluq</span><div class="sc-bar-track"><div class="sc-bar-fill" style="width:0%;background:var(--fail);" data-w="100"></div></div><span class="sc-bar-val" style="color:var(--fail)" id="barF">—</span></div>
+        </div>
+        <div class="sc-footer"><span>Audit: 2025</span><span>16 Sahə · 200+ Maddə</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- SUMMARY -->
+<section id="summary">
+  <div class="eyebrow">Executive Summary</div>
+  <div class="sec-title">Xülasə</div>
+  <div class="hl-box">
+    <p><strong>Ümumi nəticə:</strong> HR Departamentinin auditi göstərir ki, əsas proseslər kağız üzərindədir, lakin sənədləşmə boşluqları kritik mərhələdədir. Siyasət çərçivəsi yarımçıqdır, HRIS sistemi tam işlək deyil, performans idarəetməsi strukturlaşdırılmamışdır. Bir sıra sahələrdə Azərbaycan Əmək Məcəlləsinin tələblərinə uyğunsuzluqlar aşkarlanmışdır.</p>
+  </div>
+  <div class="sum-strip fade-up" id="sum-strip-el"></div>
+  <div class="stat-bar" id="stat-bar-el"></div>
+  <div class="charts-wrap fade-up">
+    <div class="chart-box">
+      <div class="chart-box-title">Status Paylanması</div>
+      <div class="chart-canvas-wrap" style="max-height:250px;">
+        <canvas id="pieChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-box">
+      <div class="chart-box-title">Sahə üzrə Tapıntı Sayı</div>
+      <div class="chart-canvas-wrap" style="height:380px;">
+        <canvas id="barChart"></canvas>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- OVERVIEW BY CATEGORY -->
+<section id="statistics">
+  <div class="eyebrow">Sahə Üzrə Baxış</div>
+  <div class="sec-title">Kateqoriya Analizi</div>
+  <div class="legend">
+    <div class="leg-item"><div class="leg-dot" style="background:var(--ok)"></div>Uyğun</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--warn)"></div>Qismən / İşlək</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--fail)"></div>Boşluq / Risk</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--amber)"></div>Məlumat Yoxdur</div>
+  </div>
+  <div class="cat-overview fade-up" id="cat-grid"></div>
+</section>
+
+<hr class="div">
+
+<!-- PRIORITY MATRIX -->
+<section id="governance">
+  <div class="eyebrow">Prioritet Planlaşdırma</div>
+  <div class="sec-title">Prioritet Matrisi</div>
+  <div class="matrix-box fade-up">
+    <div style="font-size:9px;letter-spacing:2px;color:var(--text3);text-transform:uppercase;font-weight:800">↑ YÜKSƏK TƏSİR</div>
+    <div class="matrix-grid">
+      <div class="mcell m-u">
+        <div class="mcell-lbl">🔴 Dərhal Həll — Yüksək Təsir</div>
+        <span class="mtag">İşə Qəbul Proseduru</span>
+        <span class="mtag">İntizam Tənbehi Matrisi</span>
+        <span class="mtag">HRIS Lokalizasiya</span>
+        <span class="mtag">Şikayət Mexanizmi</span>
+        <span class="mtag">Məzuniyyət Balansı</span>
+        <span class="mtag">Anti-korrupsiya Siyasəti</span>
+        <span class="mtag">GDPR Proseduru</span>
+        <span class="mtag">DEI Siyasəti</span>
+      </div>
+      <div class="mcell m-p">
+        <div class="mcell-lbl">🟠 Planlaşdır — Yüksək Təsir / Gələcək</div>
+        <span class="mtag">NDA Müqaviləsi</span>
+        <span class="mtag">Əmək Haqqı Siyasəti</span>
+        <span class="mtag">Risk Reyestri</span>
+        <span class="mtag">Offboarding Checklist</span>
+        <span class="mtag">Strukturlaşdırılmış İntervyu</span>
+        <span class="mtag">IDP (Fərdi İnkişaf Planı)</span>
+        <span class="mtag">KPI Sistemi</span>
+        <span class="mtag">Mentorluq Proqramı</span>
+      </div>
+      <div class="mcell m-d">
+        <div class="mcell-lbl">🟡 Nəzarətdə — Orta Təsir</div>
+        <span class="mtag">RACI Matrisi</span>
+        <span class="mtag">TNA Aparılması</span>
+        <span class="mtag">eNPS Ölçümü</span>
+        <span class="mtag">İllik Təlim Planı</span>
+        <span class="mtag">Stay Interviews</span>
+        <span class="mtag">Exit Interview Analizi</span>
+        <span class="mtag">Succession Planning</span>
+      </div>
+      <div class="mcell m-f">
+        <div class="mcell-lbl">🟢 Uzunmüddətli — Aşağı Prioritet</div>
+        <span class="mtag">Recognition Proqramı</span>
+        <span class="mtag">Elektron Sənəd Dövriyyəsi</span>
+        <span class="mtag">Internal Mobility Proqramı</span>
+        <span class="mtag">ADA Təhsil Dəstəyi Genişlənməsi</span>
+      </div>
+    </div>
+    <div style="font-size:9px;letter-spacing:2px;color:var(--text3);text-transform:uppercase;margin-top:8px;font-weight:800">← İNDİ ↔ GƏLƏCƏKdə →</div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- DETAIL TABLES HEADER -->
+<section id="details" style="padding-bottom:20px;">
+  <div class="eyebrow">Tam Audit Cədvəli</div>
+  <div class="sec-title">Sahə Üzrə Tapıntılar</div>
+  <div class="legend">
+    <div class="leg-item"><div class="leg-dot" style="background:var(--ok)"></div>✓ Uyğun / Mövcud</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--warn)"></div>⚠ Qismən / Müzakirə</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--fail)"></div>✗ Mövcud Deyil / Risk</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--amber)"></div>ℹ Məlumat / Qeyd</div>
+  </div>
+</section>
+<div id="detail-tables"></div>
+
+<hr class="div">
+
+<!-- RECOMMENDATIONS -->
+<section id="recommendations">
+  <div class="eyebrow">İrəli Addımlar</div>
+  <div class="sec-title">Tövsiyələr</div>
+  <div class="rec-list fade-up" id="rec-list"></div>
+</section>
+
+<footer>
+  <div>
+    <div class="footer-logo">PASHAPAY</div>
+    <div style="font-size:11px;color:var(--text3);margin-top:8px;font-weight:600;letter-spacing:1px;">HR DEPARTAMENTİ KOMPLEKSİ AUDİT · 2025</div>
+  </div>
+  <div class="footer-info">Hazırladı: Daxili Audit Komandası<br>Status: Məxfi — Yalnız Rəhbərlik Üçün<br>© 2025 PashaPay MMC</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+/* ===== THEME ===== */
+function toggleTheme(){
+  const h=document.documentElement,d=h.getAttribute('data-theme')==='dark';
+  h.setAttribute('data-theme',d?'light':'dark');
+  document.getElementById('ticon').textContent=d?'☀️':'🌙';
+  document.getElementById('tlbl').textContent=d?'Light':'Dark';
+  drawSpeedometer(55);buildCharts();
+}
+
+/* ===== DATA ===== */
+// s=status: ok=Uyğun, w=Qismən/İşlək, f=Mövcud Deyil/Risk, i=Məlumat
+const DATA=[
+  // 1. HR Governance & Policies - Siyasət
+  {cat:"1. HR Governance & Siyasətlər",sub:"1.1 Siyasət və Prosedurlar",m:"HR siyasət və prosedurların mövcudluğu",s:"w",n:"Mövcud olanlar: Əmək münasibətlərinin uzadılmaması, Rəhbər vəzifələrə təyinat, Etik Davranış Kodeksi, Konfidensial ödəniş siyasəti, Maraqlar münaqişəsi, Məzuniyyət, Ezamiyyə.\nMövcud olmayanlar: İşə qəbul siyasəti, NDA, Korrupsiyaya qarşı ayrıca siyasət, İntizam araşdırma siyasəti, İntizam tənbehi matrisi, Tam Maddi Məsuliyyət müqaviləsi, Davamiyyət proseduru (tam deyil)."},
+  {cat:"1. HR Governance & Siyasətlər",sub:"1.1 Siyasət və Prosedurlar",m:"Daxili əmək qaydaları aktı",s:"f",n:"Daxili nizam-intizam qaydaları ilə bağlı ayrıca prosedur yoxdur. Etik kodeks mövcuddur lakin tam əhatə etmir. Daxili nizami-intizam qaydaları hüquqi çərçivə və intizam tənbehi məsələlərini əhatə etməlidir."},
+  {cat:"1. HR Governance & Siyasətlər",sub:"1.1 Siyasət və Prosedurlar",m:"İşə qəbul, adaptasiya və xitam prosedurlarının sənədləşdirilməsi",s:"f",n:"İşə qəbul proseduru yoxdur. Adaptasiya proseduru yoxdur. Xitam proseduru 'Əmək münasibətlərinin uzadılmaması siyasəti' adı altında mövcuddur lakin məhdud əhatəlidir — hüquqi istinadlar, xitam qaydaları aydın deyil."},
+  {cat:"1. HR Governance & Siyasətlər",sub:"1.1 Siyasət və Prosedurlar",m:"Konfidensialıq siyasəti",s:"w",n:"Mövcud siyasət yalnız ödəniş məlumatlarını əhatə edir. Məsuliyyətlər aydın deyil. Hüquqi rəy və infosec rəyi tələb olunur."},
+  {cat:"1. HR Governance & Siyasətlər",sub:"1.1 Siyasət və Prosedurlar",m:"Etik davranış kodeksi",s:"ok",n:"Etik kodeks mövcuddur, ətraflı və əhatəlidir. Ekosistem səviyyəsində vahid kodeks halına salına bilər."},
+  {cat:"1. HR Governance & Siyasətlər",sub:"1.1 Siyasət və Prosedurlar",m:"Şikayət mexanizmi",s:"f",n:"Bu siyasət mövcud deyil. İşçilərin şikayətlərinin qəbulu və həlli üçün rəsmi mexanizm yoxdur."},
+  {cat:"1. HR Governance & Siyasətlər",sub:"1.1 Siyasət və Prosedurlar",m:"Korrupsiya və rüşvətxorluğa qarşı siyasət",s:"w",n:"Ayrıca siyasət mövcud deyil. Etik kodeksin daxilinde bəzi müddəalar var lakin məhdud məlumat verir."},
+  {cat:"1. HR Governance & Siyasətlər",sub:"1.1 Siyasət və Prosedurlar",m:"İntizam pozuntularının araşdırılması proseduru",s:"f",n:"Prosedur mövcud deyil."},
+  {cat:"1. HR Governance & Siyasətlər",sub:"1.2 Təşkilati Struktur",m:"Şirkətin təşkilati strukturu",s:"ok",n:"Təşkilati struktur cədvəli mövcuddur. Sonuncu dəfə 01.10.2025-ci ildə təsdiqlənib."},
+  {cat:"1. HR Governance & Siyasətlər",sub:"1.2 Təşkilati Struktur",m:"Vəzifə təlimatlarının mövcudluğu",s:"w",n:"Vəzifə təlimatları qismən mövcuddur. Bütün aktiv vəzifələri əhatə etmir. Bəziləri şəxsə spesifik hazırlanıb. Hazırda tamamlanma prosesi davam edir (312 vəzifədən 20-si yoxdur)."},
+  {cat:"1. HR Governance & Siyasətlər",sub:"1.2 Təşkilati Struktur",m:"Vəzifə təlimatlarının yenilənməsi",s:"w",n:"Versiyaların izlənilmə prosesi üçün elektron tool mövcud deyil."},
+  {cat:"1. HR Governance & Siyasətlər",sub:"1.2 Təşkilati Struktur",m:"RACI matrisi",s:"f",n:"Səlahiyyət məsuliyyət bölgüsü matrisi yoxdur. Daxili etibarnamə əsasında aparılır."},
+  {cat:"1. HR Governance & Siyasətlər",sub:"1.2 Təşkilati Struktur",m:"HR departamentinin resurs adekvatlığı",s:"ok",n:"İşçi sayına mütənasib olaraq HR-da kifayət qədər əməkdaş mövcuddur. HR to Employee Ratio qorunur."},
+  {cat:"1. HR Governance & Siyasətlər",sub:"1.2 Təşkilati Struktur",m:"Rol üzrə məsuliyyətlərin dəqiq müəyyənləşdirilməsi",s:"w",n:"Yazılı sənəd mövcud deyil. RACI matrisi olmadığından vəzifə təlimatlarının natamamlığı bu məsələni çətinləşdirir."},
+  {cat:"1. HR Governance & Siyasətlər",sub:"1.3 Qanunvericiliyə Uyğunluq",m:"GDPR / Şəxsi məlumatların qorunması",s:"f",n:"Bu istiqamətdə prosedur yoxdur."},
+  {cat:"1. HR Governance & Siyasətlər",sub:"1.3 Qanunvericiliyə Uyğunluq",m:"HR Risk Reyestri",s:"f",n:"Daxili Risk Reyestri yoxdur. Tapıntılar audit tərəfindən izlənilir, daxildə izləmə yoxdur."},
+  {cat:"1. HR Governance & Siyasətlər",sub:"1.3 Qanunvericiliyə Uyğunluq",m:"Daxili nəzarət mexanizmləri",s:"w",n:"Etik kodeks var, 360 qiymətləndirməyə əsasən monitoring aparılır."},
+  {cat:"1. HR Governance & Siyasətlər",sub:"1.3 Qanunvericiliyə Uyğunluq",m:"Xarici audit tövsiyələrinin izlənilməsi",s:"w",n:"Davamiyyət izlənilməsi, vəzifə təlimatları və ezamiyyət vərəqələri ilə bağlı əvvəlki tapıntılar mövcuddur. Addımlar atılıb lakin bürokratik maneələr var."},
+  {cat:"1. HR Governance & Siyasətlər",sub:"1.3 Qanunvericiliyə Uyğunluq",m:"AZ Əmək Məcəlləsinə tam uyğunluq",s:"w",n:"Məzuniyyət əmrlərinin 5 gün əvvəl verilməsi mümkün olmur. Davamiyyət məlumatları izlənilə bilən olmadığından sənəd təqdim etmək olmur."},
+  {cat:"1. HR Governance & Siyasətlər",sub:"1.3 Qanunvericiliyə Uyğunluq",m:"DOST sistemi ilə əlaqə",s:"ok",n:"Vahid bəyannamə təqdim edilir. Aylıq statistika hesabatlar göndərilir. Problem yaranmayıb."},
+  {cat:"1. HR Governance & Siyasətlər",sub:"1.3 Qanunvericiliyə Uyğunluq",m:"Vergi qanunvericiliyinə uyğunluq",s:"ok",n:"Aylıq payroll kalkulyasiyasına əsasən vergi hesabatları vaxtında təqdim edilir. Problem yaşanmayıb."},
+  // 2. İşe qebul
+  {cat:"2. İşə Qəbul & Adaptasiya",sub:"2.1 İşə Qəbul Prosesi",m:"İşə qəbul proseduru (yazılı)",s:"f",n:"Yazılı prosedur mövcud deyil. Proses fiziki olaraq mövcuddur: MPR → büdcə yoxlama → ATS (Handflow) → shortlist → intervyu (recruiter+HM, sonra HOD) → security check → job offer. Structured intervyu tipi yoxdur."},
+  {cat:"2. İşə Qəbul & Adaptasiya",sub:"2.1 İşə Qəbul Prosesi",m:"Vakansiya açılması və təsdiqləmə",s:"ok",n:"Proses mövcuddur. Hiring Manager Jira üzərindən request açır, büdcə yoxlanışı baş verir."},
+  {cat:"2. İşə Qəbul & Adaptasiya",sub:"2.1 İşə Qəbul Prosesi",m:"İş elanlarının ƏM uyğunluğu",s:"ok",n:"İş elanları qanunvericiliyə tam uyğun tərtib edilir. Diskriminasiya aktı aşkarlanmadı."},
+  {cat:"2. İşə Qəbul & Adaptasiya",sub:"2.1 İşə Qəbul Prosesi",m:"Namizəd qiymətləndirmə meyarları",s:"w",n:"Kompetensiyalar şifahi olaraq qiymətləndirilir. Qeydiyyat sənədi yoxdur. Structured intervyu aparılmır."},
+  {cat:"2. İşə Qəbul & Adaptasiya",sub:"2.1 İşə Qəbul Prosesi",m:"Müsahibənin strukturlaşdırılması",s:"w",n:"Structured intervyu tipi yoxdur lakin bəlli bir standarta uyğun aparılır."},
+  {cat:"2. İşə Qəbul & Adaptasiya",sub:"2.1 İşə Qəbul Prosesi",m:"Reference check",s:"w",n:"Əsasən satış vəzifələri üçün aparılır. Həmişə rəsmi baş vermir."},
+  {cat:"2. İşə Qəbul & Adaptasiya",sub:"2.1 İşə Qəbul Prosesi",m:"Background check",s:"f",n:"Sistematik aparılmır. Ehtiyac olanda ƏMAS üzərindən sorğulana bilər."},
+  {cat:"2. İşə Qəbul & Adaptasiya",sub:"2.1 İşə Qəbul Prosesi",m:"Job offer standart şablonu",s:"ok",n:"Standart şablon mövcuddur. Jira platformasında formalaşır, Chief of Staff imzalayır. Maili olmayan namizədlərə WhatsApp ilə göndərilir."},
+  {cat:"2. İşə Qəbul & Adaptasiya",sub:"2.1 İşə Qəbul Prosesi",m:"İşə qəbul qərarlarının sənədləşdirilməsi",s:"w",n:"Seçilmiş namizəd üçün HM yazılı justification verir. Əvvəlki danışıqlar şifahi baş verir."},
+  {cat:"2. İşə Qəbul & Adaptasiya",sub:"2.2 Şəxsi İşlər",m:"Şəxsi işin tam sənədlərlə təmin edilməsi",s:"ok",n:"Şəxsi işlər Shared Drive-da ayrıca qovluq kimi saxlanılır. Bütün zəruri sənədlər mövcuddur."},
+  {cat:"2. İşə Qəbul & Adaptasiya",sub:"2.2 Şəxsi İşlər",m:"CV, şəxsiyyət vəsiqəsi, diplom sənədləri",s:"ok",n:"CV (son 1 ildəki), şəxsiyyət vəsiqəsi kopyası, diplomlar şəxsi işdə mövcuddur."},
+  {cat:"2. İşə Qəbul & Adaptasiya",sub:"2.2 Şəxsi İşlər",m:"Tibbi arayış",s:"ok",n:"Müvafiq vəzifələr üzrə tələb edilir: Texnik, Xadimə, İnkassator."},
+  {cat:"2. İşə Qəbul & Adaptasiya",sub:"2.2 Şəxsi İşlər",m:"Əmək kitabçası",s:"w",n:"Hər namizəddən tələb edilir. 2013-dən əvvəl təcrübəsi olanlar könüllü əsasda təqdim edə bilər."},
+  {cat:"2. İşə Qəbul & Adaptasiya",sub:"2.2 Şəxsi İşlər",m:"Hərbi bilet",s:"w",n:"Kişi namizədlərdən tələb edilir. Təqdim etməmə halında da işə qəbul baş verir — uyğunsuzluq."},
+  {cat:"2. İşə Qəbul & Adaptasiya",sub:"2.2 Şəxsi İşlər",m:"NDA imzalanması",s:"ok",n:"Bütün əməkdaşlarla NDA imzalanır."},
+  {cat:"2. İşə Qəbul & Adaptasiya",sub:"2.2 Şəxsi İşlər",m:"SİMA qeydiyyatı",s:"ok",n:"Bütün müqavilələr elektron imza və SİMA ilə imzalanır."},
+  {cat:"2. İşə Qəbul & Adaptasiya",sub:"2.3 Əmək Müqavilələri",m:"Əmək müqaviləsinin ƏM tələblərinə uyğunluğu",s:"w",n:"Ümumi uyğundur. Lakin daxili qaydalar əlavə olunmalıdır: kart bloklanması, təlimdən tutulmalar. Bir sıra bəndlər yenidən nəzərdən keçirilməlidir."},
+  {cat:"2. İşə Qəbul & Adaptasiya",sub:"2.3 Əmək Müqavilələri",m:"Müqavilənin işçiyə bir nüsxəsinin verilməsi",s:"w",n:"Aktual deyil — prosedur nəzərdən keçirilməlidir."},
+  {cat:"2. İşə Qəbul & Adaptasiya",sub:"2.3 Əmək Müqavilələri",m:"Vəzifə adının dəqiq göstərilməsi",s:"w",n:"Vəzifə adları müqaviləyə qeyd olunur. Lakin müvəqqəti işçilər üçün 'müvəqqəti' qeyd olunmur."},
+  {cat:"2. İşə Qəbul & Adaptasiya",sub:"2.3 Əmək Müqavilələri",m:"Əmək haqqı məbləği (gross/net)",s:"ok",n:"Gross məbləğ qeyd olunur. Tutulmalardan sonra net məbləğ qalır."},
+  {cat:"2. İşə Qəbul & Adaptasiya",sub:"2.3 Əmək Müqavilələri",m:"Sınaq müddəti",s:"ok",n:"Sınaq müddəti müqavilənin müddətinə əsasən qoyulur."},
+  {cat:"2. İşə Qəbul & Adaptasiya",sub:"2.3 Əmək Müqavilələri",m:"İş saatları və rejim",s:"ok",n:"8 saatlıq flexible iş vaxtı müqavilədə qeyd olunur."},
+  {cat:"2. İşə Qəbul & Adaptasiya",sub:"2.4 Adaptasiya",m:"Strukturlaşdırılmış onboarding proqramı",s:"w",n:"Strukturlaşdırılmış paket yoxdur. İspring üzərindən aparmaq üçün layihə davam edir."},
+  {cat:"2. İşə Qəbul & Adaptasiya",sub:"2.4 Adaptasiya",m:"Pre-boarding — avadanlıq hazırlığı",s:"ok",n:"Job Offer təsdiqləndikdən sonra Jira üzərindən checklist aktivləşir, aidiyyəti şəxslərə maillər gedir."},
+  {cat:"2. İşə Qəbul & Adaptasiya",sub:"2.4 Adaptasiya",m:"Buddy / Mentor sistemi",s:"f",n:"Buddy təyin etmə prosesi yoxdur."},
+  {cat:"2. İşə Qəbul & Adaptasiya",sub:"2.4 Adaptasiya",m:"Onboarding checklist",s:"f",n:"Checklist mövcud deyil. Agile tərəfdə müzakirə olunub lakin transformasiyaya görə dayandırılıb."},
+  {cat:"2. İşə Qəbul & Adaptasiya",sub:"2.4 Adaptasiya",m:"Orientasiya / şirkətin tanıdılması",s:"ok",n:"Həftədə 2 dəfə görüşlər, prezentasiyalar. Holding məlumatı, ölkə məlumatı (expatlar üçün)."},
+  {cat:"2. İşə Qəbul & Adaptasiya",sub:"2.4 Adaptasiya",m:"Sınaq müddəti performans qiymətləndirməsi",s:"w",n:"Manager feedback əsasında sınaq müddəti qiymətləndirilir. Formal proses yoxdur."},
+  // 3. Emek munasibetleri
+  {cat:"3. Əmək Münasibətlərinin İdarəsi",sub:"3.1 Şərt Dəyişiklikləri",m:"Vəzifə dəyişikliyinin rəsmiləşdirilməsi",s:"ok",n:"Vəzifə, əmək haqqı, tarix dəyişiklikləri düzgün aparılır. Vəzifə təlimatları hissəsindəki natamamlıqlar var."},
+  {cat:"3. Əmək Münasibətlərinin İdarəsi",sub:"3.1 Şərt Dəyişiklikləri",m:"Əmək haqqı dəyişikliyinin sənədləşdirilməsi",s:"ok",n:"Dəyişikliklər əmək müqaviləsinə dəyişikliklə tənzimlənir, qaydalara uyğun aparılır."},
+  {cat:"3. Əmək Münasibətlərinin İdarəsi",sub:"3.1 Şərt Dəyişiklikləri",m:"İş yeri dəyişikliyinin prosedurla aparılması",s:"ok",n:"Müqaviləyə dəyişikliklə tənzimlənir. Proses qaydalara uyğundur."},
+  {cat:"3. Əmək Münasibətlərinin İdarəsi",sub:"3.1 Şərt Dəyişiklikləri",m:"ƏMAS-da dəyişikliklərin əks etdirilməsi",s:"ok",n:"Bütün dəyişikliklər ƏMAS üzərindən qaydalara uyğun aparılır."},
+  {cat:"3. Əmək Münasibətlərinin İdarəsi",sub:"3.1 Şərt Dəyişiklikləri",m:"Köçürmə əmrinin uyğunluğu",s:"w",n:"Əmr verilmir. Mail əsasında proses aparılır. Rotasiya zamanı ərizə alınır."},
+  {cat:"3. Əmək Münasibətlərinin İdarəsi",sub:"3.1 Şərt Dəyişiklikləri",m:"Əlavə razılaşmaların (addendum) qanuni tərtib edilməsi",s:"w",n:"Qanunvericiliyə uyğundur. Lakin dəyişikliklər keçid baş vermədən əvvəl yox, sonra aparılır."},
+  {cat:"3. Əmək Münasibətlərinin İdarəsi",sub:"3.2 İş Vaxtı Uçotu",m:"Faktiki iş saatlarının dəqiq qeydiyyatı",s:"f",n:"Davamiyyət məsələləri yoxlanılmır."},
+  {cat:"3. Əmək Münasibətlərinin İdarəsi",sub:"3.2 İş Vaxtı Uçotu",m:"Gec gəlmə / erkən çıxma uçotu",s:"f",n:"Davamiyyətin izlənilməsi proseduru mövcud deyil."},
+  {cat:"3. Əmək Münasibətlərinin İdarəsi",sub:"3.2 İş Vaxtı Uçotu",m:"HRIS iş vaxtı modulunun işləkliyи",s:"f",n:"1C proseslərin öhdəsindən gəlmir. Əmək haqqı Excel-də, məzuniyyət HRSS+Excel-də aparılır."},
+  {cat:"3. Əmək Münasibətlərinin İdarəsi",sub:"3.2 İş Vaxtı Uçotu",m:"Gecə saatları (22:00-06:00) ayrıca uçotu",s:"ok",n:"Növbəli qrafikli əməkdaşlar üçün gecə saatları tabelə əsasən düzgün aparılır."},
+  {cat:"3. Əmək Münasibətlərinin İdarəsi",sub:"3.2 İş Vaxtı Uçotu",m:"Aylıq timesheet prosesi",s:"ok",n:"Hər ay sonu strukturlar tabellər təqdim edir. Hesablamalar aparılır."},
+  {cat:"3. Əmək Münasibətlərinin İdarəsi",sub:"3.2 İş Vaxtı Uçotu",m:"İş vaxtı normalarına riayət monitorinqi",s:"w",n:"Excel vasitəsilə check olunur. İşləmədiyi saatları mənfi göstərir."},
+  {cat:"3. Əmək Münasibətlərinin İdarəsi",sub:"3.2 İş Vaxtı Uçotu",m:"Bayram/istirahət günlərinin qeydiyyatı",s:"ok",n:"Bayram günləri üçün ödənişlər 2 qat verilir. Əvəzgün verilmir."},
+  {cat:"3. Əmək Münasibətlərinin İdarəsi",sub:"3.3 Növbəli İş Rejimi",m:"Növbə cədvəlinin ƏM uyğunluğu",s:"ok",n:"Struktur tərəfindən hazırlanır, payroll-a göndərilir. Müvafiq yoxlamalar aparılır."},
+  {cat:"3. Əmək Münasibətlərinin İdarəsi",sub:"3.3 Növbəli İş Rejimi",m:"Gecə növbəsi ödənişinin qanuni hesablanması",s:"w",n:"İş vaxtının 50%+ gecəyə düşdüyü hallarda tam gecə ödənişi verilmir. ƏM m.163 ilə uyğunsuzluq riski var."},
+  {cat:"3. Əmək Münasibətlərinin İdarəsi",sub:"3.3 Növbəli İş Rejimi",m:"Cəmlənmiş iş vaxtı uçotu",s:"ok",n:"Cəmlənmiş uçot qaydalara uyğun aparılır."},
+  {cat:"3. Əmək Münasibətlərinin İdarəsi",sub:"3.3 Növbəli İş Rejimi",m:"Növbəli iş üçün işçi razılığının alınması",s:"f",n:"Standart qrafikli əməkdaşlardan ərizə alınmır."},
+  {cat:"3. Əmək Münasibətlərinin İdarəsi",sub:"3.3 Növbəli İş Rejimi",m:"Nahar/istirahət fasilələri",s:"ok",n:"Nahar və istirahət vaxtları gözlənilir."},
+  {cat:"3. Əmək Münasibətlərinin İdarəsi",sub:"3.4 İntizam Məsuliyyəti",m:"İntizam pozuntularının yazılı sənədləşdirilməsi",s:"w",n:"Qeydiyyat faylı Excel üzərindədir. Müraciətlər mail ilə qəbul edilir. Qərar üçün mail istifadə edilir."},
+  {cat:"3. Əmək Münasibətlərinin İdarəsi",sub:"3.4 İntizam Məsuliyyəti",m:"İşçidən yazılı izahat məktubu",s:"ok",n:"Proses qaydalara uyğun formada aparılır."},
+  {cat:"3. Əmək Münasibətlərinin İdarəsi",sub:"3.4 İntizam Məsuliyyəti",m:"İşçinin özünü müdafiə hüququ",s:"w",n:"Qərarı işçinin rəhbəri verir. İşçinin etiraz etmə şansı məhduddur."},
+  {cat:"3. Əmək Münasibətlərinin İdarəsi",sub:"3.4 İntizam Məsuliyyəti",m:"İntizam cəzasının ƏM normalarına uyğunluğu",s:"ok",n:"Əmrləşmə prosesi qanunvericiliyə uyğun aparılır. Hüquq şöbəsi viza verir."},
+  {cat:"3. Əmək Münasibətlərinin İdarəsi",sub:"3.5 Xitam",m:"İşdən çıxarma əsaslarının qanuniliyi",s:"ok",n:"Xitam əsasları adətən öz xahişi və müqavilə müddəti ilə olur. Qanunvericiliyə uyğun aparılır."},
+  {cat:"3. Əmək Münasibətlərinin İdarəsi",sub:"3.5 Xitam",m:"Qanuni xəbərdarlıq müddətinə riayət",s:"ok",n:"Müqavilə müddəti ilə bağlı azad olmalarda işçiyə 10 gün öncədən məlumat verilir."},
+  {cat:"3. Əmək Münasibətlərinin İdarəsi",sub:"3.5 Xitam",m:"Son ödənişlərin tam hesablanması",s:"ok",n:"Son haqq-hesablar işdən azad olunan gün hesablanıb ödənilir."},
+  {cat:"3. Əmək Münasibətlərinin İdarəsi",sub:"3.5 Xitam",m:"İstifadə olunmamış məzuniyyət kompensasiyası",s:"ok",n:"Qalıq məzuniyyət (əsas+əlavə) hesablanır və ödənilir."},
+  {cat:"3. Əmək Münasibətlərinin İdarəsi",sub:"3.5 Xitam",m:"Exit interview",s:"w",n:"BP-lər tərəfindən aparılır. Məlumatlar forma qeyd edilir. Lakin nəticələr analiz edilmir."},
+  {cat:"3. Əmək Münasibətlərinin İdarəsi",sub:"3.5 Xitam",m:"Offboarding checklist",s:"f",n:"Guideline yoxdur. BP-lərlə şifahi danışıq. Dövriyyə sənədi kağız üzərindədir."},
+  // 4. Mezuniyyet
+  {cat:"4. Məzuniyyətlərin İdarəsi",sub:"4.1 İllik Ödənişli Məzuniyyət",m:"Məzuniyyət hüququnun düzgün hesablanması",s:"w",n:"Məzuniyyət Excel-lərdə və HRSS-də aparılır. HRSS HRM ilə inteqrasiya yoxdur. Səhv olma ehtimalı böyükdür."},
+  {cat:"4. Məzuniyyətlərin İdarəsi",sub:"4.1 İllik Ödənişli Məzuniyyət",m:"Məzuniyyət ödənişinin 3 gün əvvəl ödənilməsi",s:"w",n:"Ödəniş əməkdaşın istəyinə əsasən məzuniyyətdən əvvəl və ya maaşla birlikdə ödənilir. ƏM tələbi tam gözlənilmir."},
+  {cat:"4. Məzuniyyətlərın İdarəsi",sub:"4.1 İllik Ödənişli Məzuniyyət",m:"Son 12 ayın orta əmək haqqı hesablaması",s:"w",n:"Qeydiyyat Excel-də aparıldığı üçün bəzi hallarda uyğunsuzluqlar olur."},
+  {cat:"4. Məzuniyyətlərın İdarəsi",sub:"4.1 İllik Ödənişli Məzuniyyət",m:"14 gün fasiləsiz məzuniyyət tələbinə riayət",s:"w",n:"Müraciət əməkdaşın özündən gəldiyi üçün 14 gün tələb olaraq qoyulmur."},
+  {cat:"4. Məzuniyyətlərın İdarəsi",sub:"4.1 İllik Ödənişli Məzuniyyət",m:"İllik məzuniyyət planlaşdırması",s:"f",n:"Məzuniyyət planlaması yoxdur."},
+  {cat:"4. Məzuniyyətlərın İdarəsi",sub:"4.1 İllik Ödənişli Məzuniyyət",m:"Məzuniyyət ərizəsinin rəsmiləşdirilməsi",s:"ok",n:"Demək olar bütün hallarda işçinin ərizəsi alınır."},
+  {cat:"4. Məzuniyyətlərın İdarəsi",sub:"4.1 İllik Ödənişli Məzuniyyət",m:"Məzuniyyət əmrlərinin ƏM uyğunluğu",s:"ok",n:"Əmrlər qanunvericiliyə uyğun tənzimlənir."},
+  {cat:"4. Məzuniyyətlərın İdarəsi",sub:"4.1 İllik Ödənişli Məzuniyyət",m:"İstifadə olunmamış məzuniyyətin uçotu",s:"ok",n:"Uçot excel+daxili sistemdə aparılır. Qalıqlar növbəti ilin üzərinə ötürülür."},
+  {cat:"4. Məzuniyyətlərın İdarəsi",sub:"4.1 İllik Ödənişli Məzuniyyət",m:"Xitam zamanı kompensasiya",s:"ok",n:"İşdən çıxan əməkdaşa qanunvericiliyə uyğun kompensasiya ödənilir."},
+  {cat:"4. Məzuniyyətlərın İdarəsi",sub:"4.2 Əlavə/Sosial Məzuniyyətlər",m:"Hamiləlik/doğum məzuniyyəti (126 gün)",s:"ok",n:"Tam həcmdə təmin olunur."},
+  {cat:"4. Məzuniyyətlərın İdarəsi",sub:"4.2 Əlavə/Sosial Məzuniyyətlər",m:"Uşağa qulluq məzuniyyəti (3 yaşa qədər)",s:"ok",n:"Verilir."},
+  {cat:"4. Məzuniyyətlərın İdarəsi",sub:"4.2 Əlavə/Sosial Məzuniyyətlər",m:"Təhsil məzuniyyəti",s:"ok",n:"Verilir. Əvvəlki dövrlərə əsasən yoxlama aparılır. Qiyabi/əyani fərqinə diqqət yetirilir."},
+  {cat:"4. Məzuniyyətlərın İdarəsi",sub:"4.2 Əlavə/Sosial Məzuniyyətlər",m:"Ödənişsiz məzuniyyət",s:"ok",n:"Rəhbər razı olduqda əmrləşdirilir."},
+  {cat:"4. Məzuniyyətlərın İdarəsi",sub:"4.2 Əlavə/Sosial Məzuniyyətlər",m:"Yas, toy kimi sosial məzuniyyətlər",s:"w",n:"Yas/toy məzuniyyəti verilmir. Əvəzinə il ərzində 3 gün əlavə istirahət günü verilir. İstifadə edilmədikdə növbəti ilə keçmir."},
+  {cat:"4. Məzuniyyətlərın İdarəsi",sub:"4.2 Əlavə/Sosial Məzuniyyətlər",m:"Ailə üzvünün xəstəliyi zamanı məzuniyyət",s:"ok",n:"Xəstəxanadan elektron bildiriş gəldiyi halda verilir."},
+  {cat:"4. Məzuniyyətlərın İdarəsi",sub:"4.3 Xəstəlik Məzuniyyəti",m:"Xəstəlik vərəqəsinin yoxlanılması",s:"ok",n:"ƏMAS-a keçdikdən sonra problem yaşanmır. e-tibb.gov.az üzərindən yoxlanılır."},
+  {cat:"4. Məzuniyyətlərın İdarəsi",sub:"4.3 Xəstəlik Məzuniyyəti",m:"Xəstəlik vərəqəsi qeydiyyatı",s:"ok",n:"Excel üzərindən qeydiyyat aparılır, Payroll-a ötürülür."},
+  {cat:"4. Məzuniyyətlərın İdarəsi",sub:"4.3 Xəstəlik Məzuniyyəti",m:"Xəstəlik müavinəti hesablaması",s:"ok",n:"Staj məlumatı HR tərəfindən verilir. Sonrası DSMF-ə ötürülür. Gecikmə olmur."},
+  {cat:"4. Məzuniyyətlərın İdarəsi",sub:"4.3 Xəstəlik Məzuniyyəti",m:"DSMF kompensasiya proseduru",s:"ok",n:"14 gündən artıq xəstəlik vərəqələri və analıq məzuniyyəti üçün tətbiq olunur."},
+  // 5. Payroll
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.1 Əmək Haqqı Sistemləri",m:"Yazılı əmək haqqı siyasəti",s:"f",n:"Yazılı siyasət mövcud deyil. Holdingin siyasətinə uyğun aparılır."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.1 Əmək Haqqı Sistemləri",m:"Əmək haqqı strukturu (əsas, əlavələr, bonuslar)",s:"i",n:"Struktur mövcuddur lakin yazılı müəyyənləşdirmə tamamlanmayıb."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.1 Əmək Haqqı Sistemləri",m:"Minimum əmək haqqı tələbinə riayət",s:"ok",n:"Minimum əmək haqqı tələbinə riayət olunur."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.1 Əmək Haqqı Sistemləri",m:"Əlavə ödənişlər (allowances)",s:"i",n:"Növlər və məbləğlər mövcuddur lakin sənədləşmə tamamlanmayıb."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.1 Əmək Haqqı Sistemləri",m:"Bonus/mükafatlandırma sistemi meyarları",s:"w",n:"Protokollar mövcuddur. Təqdim ediləcək."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.1 Əmək Haqqı Sistemləri",m:"Maaş artım proseduru (salary revision)",s:"w",n:"Biznes partnyorlar siyasət çərçivəsində tənzimləyir."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.1 Əmək Haqqı Sistemləri",m:"Vəzifə dərəcələndirmə sistemi (grade/band)",s:"w",n:"HR predmetidir. Biznes partnyorlar tərəfindən tənzimlənir."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.2 Hesablamalar",m:"Faktiki işlənilmiş saatlara uyğun hesablama",s:"w",n:"Qrafiklər bağlı müzakirə davam edir."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.2 Hesablamalar",m:"Aylıq hesablamaların dəqiqliyi",s:"ok",n:"Aylıq hesablamalar vaxtında aparılır."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.2 Hesablamalar",m:"Cəmlənmiş iş vaxtı uçotu ödənişi",s:"w",n:"Qrafiklər bağlı müzakirə."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.2 Hesablamalar",m:"Overtime ödənişi",s:"i",n:"İmkan mövcuddur lakin hesablama prosesi aydınlaşdırılmalıdır."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.2 Hesablamalar",m:"Gecə saatı əlavə ödənişi (20%)",s:"w",n:"20:00-06:00 arasında 20% əlavə hesablanır. ƏM m.163 — iş vaxtının 50%+ gecəyə düşdüyü hallarda tam gecə ödənişi verilməlidir."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.2 Hesablamalar",m:"Bayram günlərindəiş ödənişi (2 qat)",s:"ok",n:"İkiqat ödəniş verilir."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.2 Hesablamalar",m:"Növbəli qrafik ödənişi",s:"w",n:"Qrafiklər təqdim olunacaq. Yoxlama gözlənilir."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.2 Hesablamalar",m:"İllik məzuniyyət ödənişi (orta ƏH əsasında)",s:"ok",n:"Hesablama aparılır."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.2 Hesablamalar",m:"Son 12 ayın orta ƏH hesablaması",s:"w",n:"Excel üzərindən aparılır, bəzi hallarda uyğunsuzluqlar olur."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.2 Hesablamalar",m:"Xəstəlik müavinəti hesablaması",s:"ok",n:"Qanuni qaydada hesablanır."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.2 Hesablamalar",m:"Ezamiyyət ödənişləri (günlük, yol, yaşayış)",s:"ok",n:"Əlavə benefitlə hesablanma normaya uyğun aparılır."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.3 Tutulmalar",m:"Sosial Sığorta (22%)",s:"ok",n:"Vaxtında ödənilir."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.3 Tutulmalar",m:"İşsizliyə qarşı sığorta (0.5%)",s:"ok",n:"Düzgün aparılır."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.3 Tutulmalar",m:"İşçi sosial sığorta (3%)",s:"ok",n:"Düzgün aparılır."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.3 Tutulmalar",m:"Gəlir vergisi (14%)",s:"ok",n:"Düzgün hesablanıb büdcəyə köçürülür."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.3 Tutulmalar",m:"Avans tutulmaları",s:"ok",n:"Daxili borc faizsiz aylara bölünərək tutulur."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.3 Tutulmalar",m:"Kredit ödənişi tutulmaları",s:"ok",n:"Belə təcrübə yoxdur."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.3 Tutulmalar",m:"Məhkəmə icra vərəqəsi tutulmaları",s:"i",n:"Mövcud prosedur nəzərdən keçirilməlidir."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.3 Tutulmalar",m:"Aliment ödənişlərinin tutulması",s:"i",n:"Mövcud prosedur nəzərdən keçirilməlidir."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.4 Payroll Prosesləri",m:"Ödəniş tarixlərinin müəyyənləşdirilməsi",s:"ok",n:"Müəyyənləşdirilib."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.4 Payroll Prosesləri",m:"Aylıq payroll calendar",s:"ok",n:"Mövcuddur."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.4 Payroll Prosesləri",m:"Bank köçürməsi ilə maaş ödənişi",s:"ok",n:"Şirkətin daxilindən açılan hesaba köçürülür."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.4 Payroll Prosesləri",m:"Payslip verilməsi",s:"w",n:"Excel üzərindən verilir. Sistem üzərindən avtomatik generasiya yoxdur."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.4 Payroll Prosesləri",m:"Payroll sənədlərinin arxivləşdirilməsi",s:"ok",n:"Arxivləşdirmə prosesi mövcuddur."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.4 Payroll Prosesləri",m:"Payroll məlumatlarının məxfiliyi",s:"w",n:"Ümumi siyasət çərçivəsindədir. Spesifik tədbirlər tamamlanmayıb."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.4 Payroll Prosesləri",m:"Aylıq/rüblük/illik payroll hesabatları",s:"ok",n:"Hazırlanır."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.5 Ezamiyyət Ödənişləri",m:"Ezamiyyət əmrlərinin düzgün tərtib edilməsi",s:"ok",n:"Qaydaya uyğun aparılır."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.5 Ezamiyyət Ödənişləri",m:"Ezamiyyət vəsiqəsinin rəsmiləşdirilməsi",s:"w",n:"Daxili ezamiyyələrdə bəzi hallarda obyektiv səbəblərdən rəsmiləşdirmə mümkün olmur."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.5 Ezamiyyət Ödənişləri",m:"Yol/yaşayış xərcləri ödənişi",s:"ok",n:"Ödənilir."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.5 Ezamiyyət Ödənişləri",m:"Per diem (günlük) ödənişi",s:"ok",n:"Müəyyən olunmuş əlavə benefitlə birlikdə ödənilir."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.5 Ezamiyyət Ödənişləri",m:"Ezamiyyət qayıdış expense report",s:"f",n:"Sənədlər yoxdur. Xərc hesabatı sistemli şəkildə toplanmır."},
+  {cat:"5. Əmək Haqqı İdarəetməsi",sub:"5.5 Ezamiyyət Ödənişləri",m:"Xarici ezamiyyət əlavə prosedurları",s:"i",n:"Ayrıca prosedur müəyyənləşdirilməyib."},
+  // 6. Benefits
+  {cat:"6. Müavinətlər & Mükafatlar",sub:"6.1 Sosial Paket",m:"Sosial paket siyasəti",s:"w",n:"Paketlər mövcuddur (tibbi sığorta, idman abunəliyi, parkinq) lakin yazılı müəyyənləşdirilmə tam deyil. Vəzifə qrupları üzrə bölünüb."},
+  {cat:"6. Müavinətlər & Mükafatlar",sub:"6.1 Sosial Paket",m:"Tibbi sığorta",s:"ok",n:"Vəzifəyə əsasən müxtəlif paketlər verilir."},
+  {cat:"6. Müavinətlər & Mükafatlar",sub:"6.1 Sosial Paket",m:"Həyat sığortası",s:"ok",n:"Proqram mövcuddur. ~100 nəfər qoşulub."},
+  {cat:"6. Müavinətlər & Mükafatlar",sub:"6.1 Sosial Paket",m:"İdman / wellness proqramı",s:"ok",n:"Push 30 (menecer+), The Club (department head+) abonəlikləri."},
+  {cat:"6. Müavinətlər & Mükafatlar",sub:"6.1 Sosial Paket",m:"Nəqliyyat xərci kompensasiyası",s:"ok",n:"Öz avtomobili ilə gələnlərə GPS izləmə əsasında verilir."},
+  {cat:"6. Müavinətlər & Mükafatlar",sub:"6.1 Sosial Paket",m:"Təhsil dəstəyi proqramı",s:"ok",n:"ADA universitetindəki övladlara müəyyən ixtisaslar üzrə 50% dəstək. GPA əsasında."},
+  {cat:"6. Müavinətlər & Mükafatlar",sub:"6.1 Sosial Paket",m:"Əlavə pensiya proqramı",s:"f",n:"Nəzərdə tutulmayıb."},
+  {cat:"6. Müavinətlər & Mükafatlar",sub:"6.2 Performans Qiymətləndirilməsi",m:"Performans qiymətləndirilmə sistemi",s:"w",n:"360 dərəcə qiymətləndirmə ildə 2 dəfə (Apr, Sep) aparılır. Yalnız kompetensiyalar üzrə. Objective-based qiymətləndirmə yoxdur."},
+  {cat:"6. Müavinətlər & Mükafatlar",sub:"6.2 Performans Qiymətləndirilməsi",m:"KPI sistemi",s:"w",n:"Ümumi struktur üçün KPI tətbiq edilmir. Yalnız telesatış üçün bonus əsaslı KPI var."},
+  {cat:"6. Müavinətlər & Mükafatlar",sub:"6.2 Performans Qiymətləndirilməsi",m:"Rüblük/yarımillik qiymətləndirmə",s:"w",n:"İldə 2 dəfə (yarımillik) aparılır. Rüblük qiymətləndirmə mövcud deyil."},
+  {cat:"6. Müavinətlər & Mükafatlar",sub:"6.2 Performans Qiymətləndirilməsi",m:"Performans-mükafatlandırma əlaqəsi",s:"f",n:"Bonus sistemi performansla əlaqəli deyil. Vəzifə kateqoriyasına əsasən fix bonus."},
+  {cat:"6. Müavinətlər & Mükafatlar",sub:"6.2 Performans Qiymətləndirilməsi",m:"PIP (Performans İnkişaf Planı)",s:"f",n:"PIP üçün prosedur mövcud deyil. IDP üzərindəişlər davam edir."},
+  {cat:"6. Müavinətlər & Mükafatlar",sub:"6.3 Bonus & Mükafatlandırma",m:"Bonus siyasəti",s:"ok",n:"Yazılı protokollar mövcuddur. Ödənişlər həmin protokollara əsasən aparılır."},
+  {cat:"6. Müavinətlər & Mükafatlar",sub:"6.3 Bonus & Mükafatlandırma",m:"İllik bonus qaydaları",s:"ok",n:"Vəzifə üzrə bölünür. Töhmət alan, Sep 30-dan sonra işə başlayan, Apr-a qədər çalışmayana ödənilmir."},
+  {cat:"6. Müavinətlər & Mükafatlar",sub:"6.3 Bonus & Mükafatlandırma",m:"Layihə bonusu",s:"f",n:"Layihə icrası ilə bonus verilmir."},
+  {cat:"6. Müavinətlər & Mükafatlar",sub:"6.3 Bonus & Mükafatlandırma",m:"Referral proqramı",s:"ok",n:"Müəyyən vəzifələrə uğurlu namizəd təqdim edən əməkdaşlara verilir."},
+  {cat:"6. Müavinətlər & Mükafatlar",sub:"6.3 Bonus & Mükafatlandırma",m:"Recognition proqramı",s:"f",n:"Şəxslər səviyyəsində recognition proqramı mövcud deyil."},
+  // 7. L&D
+  {cat:"7. Təlim & İnkişaf (L&D)",sub:"7.1 Təlim Proqramları",m:"İllik təlim planı",s:"f",n:"İllik plan olmayıb. Əməkdaş tələb etdikdə rəhbər ötürür, HR Director təsdiq edir. Performance cycle-a bağlı deyil."},
+  {cat:"7. Təlim & İnkişaf (L&D)",sub:"7.1 Təlim Proqramları",m:"TNA (Təlim Ehtiyaclarının Analizi)",s:"f",n:"TNA aparılmayıb."},
+  {cat:"7. Təlim & İnkişaf (L&D)",sub:"7.1 Təlim Proqramları",m:"Onboarding tälimleri",s:"w",n:"Həftədə 2 dəfə görüşlər+prezentasiyalar. LMS üzərindən aparılmayıb."},
+  {cat:"7. Təlim & İnkişaf (L&D)",sub:"7.1 Təlim Proqramları",m:"Texniki/peşə təlimləri",s:"f",n:"Belə bir proses olmayıb."},
+  {cat:"7. Təlim & İnkişaf (L&D)",sub:"7.1 Təlim Proqramları",m:"Soft skills təlimləri",s:"ok",n:"Müraciət əsasında aparılır. Ən son: 80 nəfər üçün 2 günlük Wellbeing+Stress Management."},
+  {cat:"7. Təlim & İnkişaf (L&D)",sub:"7.1 Təlim Proqramları",m:"Liderlik inkişafı proqramları",s:"ok",n:"Pasha Holding Leadership DNA təlimləri. HoD + HoDiv-lər üçün (~60 nəfər)."},
+  {cat:"7. Təlim & İnkişaf (L&D)",sub:"7.1 Təlim Proqramları",m:"Compliance/məcburi tälimlər",s:"ok",n:"Risk + SƏTƏM tälimləri keçirilib. Noyabrdan iSpring üzərindən aparılır."},
+  {cat:"7. Təlim & İnkişaf (L&D)",sub:"7.1 Təlim Proqramları",m:"Post-training evaluation",s:"ok",n:"Microsoft Forms üzərindən feedback toplanır. Bəzi vendorlarla işləməkdən imtina edilib nəticələrə əsasən."},
+  {cat:"7. Təlim & İnkişaf (L&D)",sub:"7.1 Təlim Proqramları",m:"Təlim büdcəsinin planlaşdırılması",s:"w",n:"HR Director tərəfindən formalaşdırılır. Müstəqil L&D şöbəsi praktiki olaraq yoxdur."},
+  {cat:"7. Təlim & İnkişaf (L&D)",sub:"7.1 Təlim Proqramları",m:"Training ROI təhlili",s:"w",n:"Təlim dataları email təsdiqi ilə qeyd olunub. Excel template təqdim edilib. Bundan sonra forma üzərindən aparılacaq."},
+  {cat:"7. Təlim & İnkişaf (L&D)",sub:"7.2 Karyera İnkişafı",m:"IDP (Fərdi İnkişaf Planı)",s:"w",n:"IDP rəsmi aparılmayıb. 360 nəticəsinə əsasən feedback görüşlər keçirilir. İnkişaf planı buna əsasən aparılır."},
+  {cat:"7. Təlim & İnkişaf (L&D)",sub:"7.2 Karyera İnkişafı",m:"Succession planning",s:"w",n:"Yalnız C-Level + Head vəzifələr üçün aparılıb. Noyabrda başlandı, transformasiya ilə dayandırıldı. Key positions üçün Retention siyasəti var."},
+  {cat:"7. Təlim & İnkişaf (L&D)",sub:"7.2 Karyera İnkişafı",m:"Mentorluq & coaching proqramı",s:"f",n:"Mentorluq ve coaching proqramları olmayıb."},
+  {cat:"7. Təlim & İnkişaf (L&D)",sub:"7.2 Karyera İnkişafı",m:"Talent management sistemi",s:"w",n:"iSpring üzərindən PM var lakin rəylər müsbət deyil. High performer prosesi mövcuddur — 20 nəfərdən 5 finalçı, idarə heyəti qərar verir."},
+  {cat:"7. Təlim & İnkişaf (L&D)",sub:"7.2 Karyera İnkişafı",m:"Daxili mobilllik (internal mobility)",s:"w",n:"Non-Agile tərəfdə proses yoxdur. Agile tərəfdə öz namizədliyini irəli sürüb müsahibəyə cəlb oluna bilər."},
+  {cat:"7. Təlim & İnkişaf (L&D)",sub:"7.2 Karyera İnkişafı",m:"Assessment/development centers",s:"w",n:"Artım müraciəti olanlar BP tərəfindən assessmentə cəlb edilir. 360 + assessment nəticəsinə əsasən qərar verilir."},
+  // 8. HRIS
+  {cat:"8. HRIS Sistemi",sub:"8.1 Funksionallıq",m:"HRIS sisteminin mövcudluğu",s:"w",n:"1C sistemi 2024-dən var lakin tam təhvil verilməyib. Sürət çox zəifdir. Proseslər Excel-də aparılır."},
+  {cat:"8. HRIS Sistemi",sub:"8.1 Funksionallıq",m:"Məlumat dəqiqliyi",s:"f",n:"Sistem tam istifadə edilmir. Məzuniyyət hesablaması yanlış — ayrı HRSS alınıb. Rus qanunvericiliyi ilə işləyir."},
+  {cat:"8. HRIS Sistemi",sub:"8.1 Funksionallıq",m:"Payroll modulu",s:"f",n:"Excel üzərindən aparılır. HRM zəif və səhv işləyir."},
+  {cat:"8. HRIS Sistemi",sub:"8.1 Funksionallıq",m:"Leave management modulu",s:"f",n:"Adekvat işləmir. Balanslar səhv hesablanır. Ayrı HRSS alınıb, 1C ilə inteqrasiya yoxdur."},
+  {cat:"8. HRIS Sistemi",sub:"8.1 Funksionallıq",m:"Time & attendance modulu",s:"f",n:"Proses HRIS üzərindən aparılmır."},
+  {cat:"8. HRIS Sistemi",sub:"8.1 Funksionallıq",m:"Recruitment modulu",s:"w",n:"Handflow ATS istifadə edilir. Job offer mərhələsi Jira üzərindən aparılır."},
+  {cat:"8. HRIS Sistemi",sub:"8.1 Funksionallıq",m:"Performance management modulu",s:"ok",n:"Modul mövcuddur. İSpring üzərindən aparılır."},
+  {cat:"8. HRIS Sistemi",sub:"8.1 Funksionallıq",m:"L&D modulu",s:"w",n:"iSpring mövcuddur lakin tam funksionallıqla istifadə edilmir. Əsasən survey üçün."},
+  {cat:"8. HRIS Sistemi",sub:"8.2 Məlumat Bütövlüyü",m:"Məlumatların aktuallaşdırılması",s:"f",n:"Sistem tam işlədilmədiyi üçün məlumatlar up-to-date saxlanılmır."},
+  {cat:"8. HRIS Sistemi",sub:"8.2 Məlumat Bütövlüyü",m:"Backup & restore",s:"f",n:"Proses normal işləmir. Datalar itirilir. Restore zamanı lazımsız datalar qayıdır. Siyasət yoxdur."},
+  {cat:"8. HRIS Sistemi",sub:"8.2 Məlumat Bütövlüyü",m:"Data migration",s:"w",n:"Excel-dən 1C-yə manual (bir-bir) köçürülüb. Hansı dataların düşmədiyi bilinmir."},
+  {cat:"8. HRIS Sistemi",sub:"8.2 Məlumat Bütövlüyü",m:"Sistem auditi",s:"f",n:"Sistem güvən yaratmadığı üçün data audit aparılmır."},
+  {cat:"8. HRIS Sistemi",sub:"8.2 Məlumat Bütövlüyü",m:"Data cleaning",s:"w",n:"Excel üzərindən həm məlumat mənbəyi, həm təqdimat olaraq istifadə edilir. Emal vaxt aparır."},
+  {cat:"8. HRIS Sistemi",sub:"8.3 Məlumat Təhlükəsizliyi",m:"İstifadəçi giriş hüquqları (RBAC)",s:"w",n:"Vendor tərəfindən tənzimlənir. Daxili admin edə bilmir — vendor asılılığı. Payroll yalnız maaşları görür."},
+  {cat:"8. HRIS Sistemi",sub:"8.3 Məlumat Təhlükəsizliyi",m:"Parol siyasəti / SSO",s:"f",n:"Parol siyasəti yoxdur. SSO tətbiq edilmir. Parol expiry olmur. 2FA yoxdur."},
+  {cat:"8. HRIS Sistemi",sub:"8.3 Məlumat Təhlükəsizliyi",m:"Məlumatların maskalanması / şifrələməsi",s:"f",n:"Proqram və databaza səviyyəsinde heç bir encryption yoxdur. Vendor prod mühitdə işləyir — şəxsi məlumat riski."},
+  {cat:"8. HRIS Sistemi",sub:"8.3 Məlumat Təhlükəsizliyi",m:"Audit log",s:"f",n:"Loqlar informativ deyil. Kim nəyi dəyişdirdi izlənilə bilmir."},
+  {cat:"8. HRIS Sistemi",sub:"8.3 Məlumat Təhlükəsizliyi",m:"GDPR uyğunluğu",s:"f",n:"Maskalanma yoxdur. Proqram+databaza səviyyəsindo heç bir təddir."},
+  {cat:"8. HRIS Sistemi",sub:"8.4 İnteqrasiyalar",m:"ƏMAS/SİMA inteqrasiyası",s:"f",n:"Qapalı sistem olduğu üçün inteqrasiya ölkə miqyasında mümkün deyil. RPA ilə həll edilə bilər."},
+  {cat:"8. HRIS Sistemi",sub:"8.4 İnteqrasiyalar",m:"Bank sistemi inteqrasiyası",s:"f",n:"İnternet Banking ilə inteqrasiya yoxdur. Excel faylı ilə manual köçürmə."},
+  {cat:"8. HRIS Sistemi",sub:"8.4 İnteqrasiyalar",m:"DOST sistemi inteqrasiyası",s:"f",n:"İnteqrasiya yoxdur. Excel hesabatlar formasında manual işlənilir."},
+  {cat:"8. HRIS Sistemi",sub:"8.4 İnteqrasiyalar",m:"Elektron imza inteqrasiyası",s:"f",n:"İnteqrasiya yoxdur. ƏMAS üzrə telefon təsdiqi istifadə edilir."},
+  {cat:"8. HRIS Sistemi",sub:"8.4 İnteqrasiyalar",m:"Mühasibat (ERP) inteqrasiyası",s:"f",n:"Birbaşa inteqrasiya yoxdur. Hesabatlar Excel üzərindən ötürülür."},
+  {cat:"8. HRIS Sistemi",sub:"8.4 İnteqrasiyalar",m:"API inteqrasiyaları",s:"f",n:"Avtomatlaşma aşağı səviyyədədir. Sistem tam tətbiq edilmədiyindən heç bir inteqrasiya qurulmayıb."},
+  // 9. HR Analytics
+  {cat:"9. HR Analitika & Hesabatlar",sub:"9.1 Əsas Metriklər",m:"Headcount masterfile",s:"w",n:"Masterfile mövcuddur lakin ştat cədvəlindəki vəzifə adları ilə uyğunsuzluqlar var. Template təmin edilib, bazaya yerləşdirilib."},
+  {cat:"9. HR Analitika & Hesabatlar",sub:"9.1 Əsas Metriklər",m:"Turnover rate hesablanması",s:"w",n:"Holdinq üçün hesabat hazırlanırdı lakin exit səbəbləri düzgün qeyd edilməmişdi. Artıq eyniləşdirilib, hər ay 2 dəfə manual Excel template ilə."},
+  {cat:"9. HR Analitika & Hesabatlar",sub:"9.1 Əsas Metriklər",m:"Absenteeism statistikası",s:"w",n:"Məzuniyyət datasından hesablamaq mümkündür. Lakin giriş-çıxış datası ayrıca tutulmur. Turniket+InfoSec inteqrasiyasından sonra mümkün olar."},
+  {cat:"9. HR Analitika & Hesabatlar",sub:"9.1 Əsas Metriklər",m:"Time to hire/fill",s:"ok",n:"Jira üzərindən başlanma+bitmə tarixləri əsasında hesablanır. Datalar mövcuddur."},
+  {cat:"9. HR Analitika & Hesabatlar",sub:"9.1 Əsas Metriklər",m:"Cost per hire",s:"f",n:"Data tamlığı yoxdur. Müxtəlif mənbələrdən konsolidasiya lazımdır."},
+  {cat:"9. HR Analitika & Hesabatlar",sub:"9.1 Əsas Metriklər",m:"Employee engagement ölçümü",s:"ok",n:"WTW survey + iSpring pulse surveys keçirilib. Datalar mövcuddur."},
+  {cat:"9. HR Analitika & Hesabatlar",sub:"9.1 Əsas Metriklər",m:"Diversity & Inclusion göstəriciləri",s:"w",n:"Demoqrafik datalar Masterfile-da var. Gender, yaş göstəriciləri əlavə olaraq bank bazasından da generasiya edilə bilər."},
+  {cat:"9. HR Analitika & Hesabatlar",sub:"9.1 Əsas Metriklər",m:"Training ROI",s:"w",n:"Excel template təqdim edilib. Bundan sonra qeydiyyat həmin forma üzərindən aparılacaq."},
+  {cat:"9. HR Analitika & Hesabatlar",sub:"9.2 Hesabatlar",m:"Aylıq/rüblük/illik HR hesabatları",s:"w",n:"Data varsa, ehtiyac yarandıqda çəkilib təqdim oluna bilər. Müntəzəm hesabat strukturu yoxdur."},
+  {cat:"9. HR Analitika & Hesabatlar",sub:"9.2 Hesabatlar",m:"DSMF hesabatı",s:"ok",n:"Tutulmalar sonrası vergi balansı ilə müqayisə aparılır."},
+  {cat:"9. HR Analitika & Hesabatlar",sub:"9.2 Hesabatlar",m:"Vergi orqanlarına hesabat",s:"ok",n:"3 ayda bir təqdim edilir. Aylıq statistika hesabatı da verilir."},
+  {cat:"9. HR Analitika & Hesabatlar",sub:"9.2 Hesabatlar",m:"Dövlət statistika hesabatı",s:"ok",n:"Hər ayın 15-nə qədər elektron formada sayta daxil edilir."},
+  // 10. SETEM
+  {cat:"10. SƏTƏM (Əmək Mühafizəsi)",sub:"10.1 İş Mühafizəsi",m:"Əmək mühafizəsi siyasəti",s:"f",n:"Yazılı prosedur yoxdur."},
+  {cat:"10. SƏTƏM (Əmək Mühafizəsi)",sub:"10.1 İş Mühafizəsi",m:"Cavabdeh şəxslərin təyin edilməsi",s:"ok",n:"Cavabdeh şəxslər şirkət rəhbərliyinin əmri ilə sənədləşdirilib."},
+  {cat:"10. SƏTƏM (Əmək Mühafizəsi)",sub:"10.1 İş Mühafizəsi",m:"İş yeri attestasiyası",s:"ok",n:"Bir ay əvvəl bütün ofislər attestasiyadan keçib. Bəzi nöqsanlar var lakin norma daxilindədir."},
+  {cat:"10. SƏTƏM (Əmək Mühafizəsi)",sub:"10.1 İş Mühafizəsi",m:"Risk assessment",s:"w",n:"Ən son 2020-ci ildə aparılıb. Aşkarlanan risklər həll edilib. Təxliyyə planları hazırlanıb."},
+  {cat:"10. SƏTƏM (Əmək Mühafizəsi)",sub:"10.1 İş Mühafizəsi",m:"Tibbi müayinə",s:"ok",n:"İnkassator, sürücü, kassir üçün ildə 1. Narkoloji ani testlər. Hazırda SƏTƏM tərəfindədir."},
+  {cat:"10. SƏTƏM (Əmək Mühafizəsi)",sub:"10.1 İş Mühafizəsi",m:"SƏTƏM təlimləri",s:"ok",n:"Yeni işçilər üçün əmək+yanğın təhlükəsizliyi tälimi. Xəsarət hallarında əlavə tälimlər."},
+  {cat:"10. SƏTƏM (Əmək Mühafizəsi)",sub:"10.1 İş Mühafizəsi",m:"PPE (fərdi mühafizə vasitələri)",s:"ok",n:"Fəhlələr, inkassatorlar, sürücülər üçün uniform+PPE mövcuddur."},
+  {cat:"10. SƏTƏM (Əmək Mühafizəsi)",sub:"10.1 İş Mühafizəsi",m:"Qəza qeydiyyatı",s:"w",n:"Qeydiyyat jurnalları var lakin bədbəxt hadisə olmayıb. Əmək müfəttişliyinə məlumat verilməməsi üçün jurnala qeyd edilmir."},
+  {cat:"10. SƏTƏM (Əmək Mühafizəsi)",sub:"10.1 İş Mühafizəsi",m:"Peşə xəstəliyi statistikası",s:"ok",n:"Attestasiya aparılıb. Kassa işçiləri üçün havalandırma sistemləri qurulub."},
+  {cat:"10. SƏTƏM (Əmək Mühafizəsi)",sub:"10.2 Fövqəladə Hallar",m:"Təxliyyə planları",s:"ok",n:"Bütün ofislərdə mövcuddur. Tälimlər zamanı əməkdaşlara təqdim edilir."},
+  {cat:"10. SƏTƏM (Əmək Mühafizəsi)",sub:"10.2 Fövqəladə Hallar",m:"Yanğın təhlükəsizliyi",s:"ok",n:"Bütün ofislərdə yanğınsöndürən balonlar (CO2 + kimyəvi toz) mövcuddur."},
+  {cat:"10. SƏTƏM (Əmək Mühafizəsi)",sub:"10.2 Fövqəladə Hallar",m:"İlk tibbi yardım",s:"ok",n:"İlk tibbi yardım qutuları + cavabdeh şəxslər mövcuddur."},
+  {cat:"10. SƏTƏM (Əmək Mühafizəsi)",sub:"10.2 Fövqəladə Hallar",m:"Krizis idarəetmə planı",s:"w",n:"Pandemiya dövründə tədbirlər tətbiq edilib. Lakin xüsusi kriz workflow-ları mövcud deyil."},
+  // 11. Engagement
+  {cat:"11. Employee Engagement",sub:"11.1 İşçi Məmnuniyyəti",m:"Satisfaction survey",s:"ok",n:"WTW People Survey + iSpring daxili surveyər. 3 ay cycle — hər həftə fərqli suallar. İnformal lider seçimi, liderlik tipləri analizi."},
+  {cat:"11. Employee Engagement",sub:"11.1 İşçi Məmnuniyyəti",m:"Pulse surveys",s:"ok",n:"iSpring üzərindən müsbət təcrübə mövcuddur."},
+  {cat:"11. Employee Engagement",sub:"11.1 İşçi Məmnuniyyəti",m:"eNPS ölçümü",s:"f",n:"Belə bir praktika mövcud deyil."},
+  {cat:"11. Employee Engagement",sub:"11.1 İşçi Məmnuniyyəti",m:"Şikayət/təklif mexanizmi",s:"ok",n:"Code of Conduct siyasəti ilə tənzimlənir. Paylaşılmış formlar üzərindən."},
+  {cat:"11. Employee Engagement",sub:"11.1 İşçi Məmnuniyyəti",m:"Stay interviews",s:"f",n:"Belə praktika yoxdur. Erkən uyarı sistemi (alert) mövcud deyil."},
+  {cat:"11. Employee Engagement",sub:"11.1 İşçi Məmnuniyyəti",m:"Exit interview analizi",s:"w",n:"BP-lər aparır, forma qeyd edilir. Lakin nəticələr analiz edilmir."},
+  {cat:"11. Employee Engagement",sub:"11.2 Korporativ Mədəniyyət",m:"Core values",s:"ok",n:"Holdingin dəyərləri ilə eynidir. Tälimlər + dinləmə sessiyanları ilə təbliğ edilib."},
+  {cat:"11. Employee Engagement",sub:"11.2 Korporativ Mədəniyyət",m:"Daxili kommunikasiya kanalları",s:"w",n:"Email + Telegram + Slack. Hazırda Bir Ekosistem kanalları. Intranet var lakin yalnız user guide kimi istifadə edilir."},
+  {cat:"11. Employee Engagement",sub:"11.2 Korporativ Mədəniyyət",m:"Team building tədbirləri",s:"ok",n:"İldə 2 dəfə şirkət səviyyəsində team building. Ayrıca liderlik tədbirləri."},
+  {cat:"11. Employee Engagement",sub:"11.2 Korporativ Mədəniyyət",m:"Korporativ tədbirlər",s:"ok",n:"Engagement şöbəsi tərəfindən planlaşdırılır."},
+  {cat:"11. Employee Engagement",sub:"11.2 Korporativ Mədəniyyət",m:"Recognition proqramı",s:"f",n:"Şəxslər səviyyəsında recognition sistemi mövcud deyil."},
+  // 12. DEI
+  {cat:"12. DEI (Müxtəliflik & İnklüzivlik)",sub:"12.1 DEI Siyasətləri",m:"DEI siyasəti",s:"f",n:"DEI siyasəti mövcud deyil. Recruiterların kvota məsələlərindən xəbəri yoxdur."},
+  {cat:"12. DEI (Müxtəliflik & İnklüzivlik)",sub:"12.1 DEI Siyasətləri",m:"Equal opportunity siyasəti",s:"f",n:"Mövcud deyil. Best practice əsasında aparılır."},
+  {cat:"12. DEI (Müxtəliflik & İnklüzivlik)",sub:"12.1 DEI Siyasətləri",m:"Anti-diskriminasiya siyasəti",s:"f",n:"Yazılı siyasət yoxdur. Faktiki olaraq diskriminasiya müşahidə edilmir (multicultural mühit)."},
+  {cat:"12. DEI (Müxtəliflik & İnklüzivlik)",sub:"12.1 DEI Siyasətləri",m:"Harassment (təcavüz) qarşısının alınması",s:"f",n:"Yazılı siyasət mövcud deyil."},
+  {cat:"12. DEI (Müxtəliflik & İnklüzivlik)",sub:"12.1 DEI Siyasətləri",m:"Əlillik kvotasına riayət",s:"f",n:"Kvotaya riayət edilmir. 2 nəfər kvota üçün işə qəbul edilib lakin iş öhdəliyi olmadan maaş aldıqları müşahidə edilib — şirkətin qaydalarına ziddir."},
+  {cat:"12. DEI (Müxtəliflik & İnklüzivlik)",sub:"12.1 DEI Siyasətləri",m:"Gender pay gap monitorinqi",s:"f",n:"Bu hesabat növü tətbiq edilmir."},
+  {cat:"12. DEI (Müxtəliflik & İnklüzivlik)",sub:"12.1 DEI Siyasətləri",m:"Diversity metrics",s:"f",n:"Bu istiqamətdə konkret hesabatlar mövcud deyil."},
+  // 13. Vendor
+  {cat:"13. Vendor Management",sub:"13.1 Vendorların İdarəsi",m:"HR xidmət provayderləri ilə əməkdaşlıq",s:"ok",n:"Procurement üzərindən gedir. Tender əsasında vendorlar seçilir."},
+  // 14. Sened
+  {cat:"14. Sənəd İdarəetməsi",sub:"14.1 Sənəd İdarəsi",m:"Arxivləşdirmə prosesi",s:"ok",n:"Sənədlər ildə 1 dəfə arxivə təhvil verilir."},
+  {cat:"14. Sənəd İdarəetməsi",sub:"14.1 Sənəd İdarəsi",m:"Müddəti keçmiş sənədlərin məhvi",s:"w",n:"Müddəti keçmiş sənədlər arxivə təhvil verilir. Ayrıca məhvetmə proseduru yoxdur."},
+  {cat:"14. Sənəd İdarəetməsi",sub:"14.1 Sənəd İdarəsi",m:"Sənəd saxlama müddətləri",s:"f",n:"Saxlama müddətləri ilə bağlı standartlaşdırılmış qayda yoxdur. Əmrlər kateqoriyalara bölünməyib."},
+  {cat:"14. Sənəd İdarəetməsi",sub:"14.1 Sənəd İdarəsi",m:"Elektron sənəd dövriyyəsi",s:"f",n:"Elektron sənəd dövriyyəsi tətbiq edilmir."},
+  {cat:"14. Sənəd İdarəetməsi",sub:"14.1 Sənəd İdarəsi",m:"Sənəd giriş hüquqları",s:"ok",n:"Giriş hüquqları ilə bağlı tənzimləmələr mövcuddur."},
+  {cat:"14. Sənəd İdarəetməsi",sub:"14.1 Sənəd İdarəsi",m:"Sənəd idarəetmə siyasəti",s:"f",n:"Yazılı siyasət mövcud deyil."},
+  {cat:"14. Sənəd İdarəetməsi",sub:"14.1 Sənəd İdarəsi",m:"Sənəd məxfiliyi",s:"ok",n:"Sənədlər əlavə otaqda seyflərdə saxlanılır."},
+  // 16. Performance & Career
+  {cat:"16. Performans & Karyera İnkişafı",sub:"16.1 Qiymətləndirmə",m:"Davranış kompetensiyaları üzrə qiymətləndirmə",s:"w",n:"İldə 2 dəfə (Apr/Sep) 360 dərəcə, iSpring, 650 nəfər. Dəyər yönümlü lakin biznes nəticələrinə bağlı deyil. Platforma yeniləməsi tövsiyə olunur."},
+  {cat:"16. Performans & Karyera İnkişafı",sub:"16.1 Qiymətləndirmə",m:"Texniki bacarıqlar qiymətləndirilməsi",s:"ok",n:"Yalnız developerlər üçün, artım müraciətindəki vaxt. Community lead+member intervyu. Promotion-a bağlı yanaşma məqsədəuyğundur."},
+  {cat:"16. Performans & Karyera İnkişafı",sub:"16.1 Qiymətləndirmə",m:"Karyera inkişaf modeli (KİM)",s:"w",n:"4 kateqoriya: Front-line, Office team, Dev team, Managers. Müşahidə: Front-line-da kompetensiya nəticəsinin əlavə edilməsi, rəhbərlik üçün beynəlxalq alətlərin tətbiqi tövsiyə olunur."},
+  {cat:"16. Performans & Karyera İnkişafı",sub:"16.1 Qiymətləndirmə",m:"Performansa əsaslı mükafatlandırma",s:"f",n:"Mükafatlandırma performans əsaslı deyil. 10 kateqoriya üzrə X-bonus. Board 1% əməkdaşa max x10 bonus verə bilər."},
+  {cat:"16. Performans & Karyera İnkişafı",sub:"16.1 Qiymətləndirmə",m:"Feedback mədəniyyəti",s:"w",n:"Agile-da işləkdir. Non-Agile-da işlək deyil. Platforma üzərindən feedback mədəniyyəti mövcud deyil."},
+];
+
+/* ===== COMPUTE STATS ===== */
+const cats={};
+DATA.forEach(d=>{
+  if(!cats[d.cat])cats[d.cat]={ok:0,w:0,f:0,i:0};
+  cats[d.cat][d.s]++;
+});
+const total=DATA.length;
+const cntOk=DATA.filter(d=>d.s==='ok').length;
+const cntW=DATA.filter(d=>d.s==='w').length;
+const cntF=DATA.filter(d=>d.s==='f').length;
+const cntI=DATA.filter(d=>d.s==='i').length;
+
+// Update hero stats
+document.getElementById('cntOk').textContent=cntOk;
+document.getElementById('cntW').textContent=cntW;
+document.getElementById('cntF').textContent=cntF;
+
+// Summary strip
+const strip=document.getElementById('sum-strip-el');
+strip.innerHTML=`
+  <div class="sc2 sc2-ok"><div class="sc2-n">${cntOk}</div><div class="sc2-l">Uyğun / Mövcud</div><div class="sc2-d">Tələblər qarşılanır</div></div>
+  <div class="sc2 sc2-w"><div class="sc2-n">${cntW}</div><div class="sc2-l">Qismən / İşlək</div><div class="sc2-d">Boşluqlar mövcuddur</div></div>
+  <div class="sc2 sc2-f"><div class="sc2-n">${cntF}</div><div class="sc2-l">Boşluq / Risk</div><div class="sc2-d">Dərhal diqqət tələb edir</div></div>
+  <div class="sc2 sc2-i"><div class="sc2-n">${cntI}</div><div class="sc2-l">Məlumat / Qeyd</div><div class="sc2-d">İzlənilməlidir</div></div>`;
+
+// Stat bar
+const sb=document.getElementById('stat-bar-el');
+sb.innerHTML=`
+  <div style="flex:${cntOk};background:var(--ok)"></div>
+  <div style="flex:${cntW};background:var(--warn)"></div>
+  <div style="flex:${cntF};background:var(--fail)"></div>
+  <div style="flex:${cntI};background:var(--amber)"></div>`;
+
+// Update bar values in hero
+document.getElementById('barOk').textContent=cntOk;
+document.getElementById('barW').textContent=cntW;
+document.getElementById('barF').textContent=cntF;
+
+/* ===== CATEGORY GRID ===== */
+const cg=document.getElementById('cat-grid');
+Object.entries(cats).forEach(([name,c])=>{
+  const tot=c.ok+c.w+c.f+c.i;
+  const el=document.createElement('div');
+  el.className='cov fade-up';
+  const maxV=Math.max(c.ok,c.w,c.f,c.i,1);
+  el.innerHTML=`
+    <div class="cov-head">
+      <div class="cov-name">${name.replace(/^\d+\.\s*/,'')}</div>
+    </div>
+    <div class="cov-mini-bars">
+      <div class="cov-br"><span class="cov-bn">Uyğun</span><div class="cov-bt"><div class="cov-bf" style="width:${c.ok/maxV*100}%;background:var(--ok)"></div></div><span class="cov-bv">${c.ok}</span></div>
+      <div class="cov-br"><span class="cov-bn">Qismən</span><div class="cov-bt"><div class="cov-bf" style="width:${c.w/maxV*100}%;background:var(--warn)"></div></div><span class="cov-bv">${c.w}</span></div>
+      <div class="cov-br"><span class="cov-bn">Risk</span><div class="cov-bt"><div class="cov-bf" style="width:${c.f/maxV*100}%;background:var(--fail)"></div></div><span class="cov-bv">${c.f}</span></div>
+    </div>
+    <div class="cov-tot">${tot} maddə</div>`;
+  cg.appendChild(el);
+});
+
+/* ===== DETAIL TABLES ===== */
+const modMap={};
+DATA.forEach(d=>{
+  if(!modMap[d.cat])modMap[d.cat]={};
+  if(!modMap[d.cat][d.sub])modMap[d.cat][d.sub]=[];
+  modMap[d.cat][d.sub].push(d);
+});
+const dt=document.getElementById('detail-tables');
+Object.entries(modMap).forEach(([cat,subs])=>{
+  const allItems=Object.values(subs).flat();
+  const sec=document.createElement('div');
+  sec.className='dmod fade-up';
+  const bid='d_'+cat.replace(/[^a-z0-9]/gi,'_');
+  const cntBadge=`<span style="font-size:10.5px;color:var(--text3);font-weight:500;margin-left:12px;">${allItems.length} maddə</span>`;
+  sec.innerHTML=`
+    <div class="dmod-head" onclick="toggleDet(this,'${bid}')">
+      <span>${cat}</span>${cntBadge}
+      <span class="dmod-arr">▼</span>
+    </div>
+    <div id="${bid}">
+      <table class="ftbl">
+        <thead><tr>
+          <th style="width:220px">Maddə</th>
+          <th style="width:100px">Status</th>
+          <th>Audit Qeydi</th>
+        </tr></thead>
+        <tbody>
+          ${allItems.map(i=>{
+            const sMap={ok:'sts-ok',w:'sts-w',f:'sts-f',i:'sts-i'};
+            const sLabel={ok:'✓ Uyğun',w:'⚠ Qismən',f:'✗ Boşluq/Risk',i:'ℹ Məlumat'};
+            const note=i.n.replace(/\n/g,'<br>');
+            return `<tr>
+              <td><div class="fn-func">${i.m}</div><div class="fn-sub">${i.sub}</div></td>
+              <td><span class="sts ${sMap[i.s]}">${sLabel[i.s]}</span></td>
+              <td class="fn-note">${note}</td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>`;
+  dt.appendChild(sec);
+});
+
+function toggleDet(h,id){
+  const b=document.getElementById(id);
+  h.classList.toggle('collapsed');
+  b.style.display=h.classList.contains('collapsed')?'none':'';
+}
+
+/* ===== RECOMMENDATIONS ===== */
+const recs=[
+  {p:'p1',n:'01',t:'DEI Siyasət Paketinin Hazırlanması',d:'DEI siyasəti, anti-diskriminasiya, harassment qarşısının alınması, kvota tələblərinə riayət, gender pay gap monitorinqi — bütün bu sahələr üçün vahid siyasət çərçivəsi hazırlanmalıdır. Əlillik kvotası ilə bağlı cari vəziyyət dərhal gözden keçirilməlidir.',t2:'Dərhal · 1–2 Ay'},
+  {p:'p1',n:'02',t:'Siyasət Çərçivəsinin Tamamlanması',d:'İşə qəbul proseduru, İntizam araşdırma siyasəti, İntizam tənbehi matrisi, Şikayət mexanizmi, Anti-korrupsiya siyasəti, Offboarding guideline, GDPR proseduru — bunların hamısı yazılı formada hazırlanmalı, əməkdaşlara çatdırılmalıdır.',t2:'Dərhal · 2–3 Ay'},
+  {p:'p1',n:'03',t:'HRIS Lokalizasiyası və Əsas Modulların Aktivasiyası',d:'1C sisteminin AZ Əmək Məcəlləsinə uyğun lokalizasiyası, Payroll modulunun aktivasiyası, Leave management modulunun HRSS ilə əvəzlənməsi və ya inteqrasiyası, test mühitinin qurulması, məlumat maskalanması — bunlar kritik prioritetdir.',t2:'Dərhal · 2–4 Ay'},
+  {p:'p1',n:'04',t:'HRIS Məlumat Təhlükəsizliyi',d:'Parol siyasəti, 2FA/MFA tətbiqi, məlumat maskalanması (proqram+databaza), audit log-ların informativliyi, vendor prodaksiyanı istifadəsinin məhdudlaşdırılması — GDPR uyğunluğu üçün təcili həll edilməlidir.',t2:'Dərhal · 2–3 Ay'},
+  {p:'p2',n:'05',t:'Strukturlaşdırılmış İşə Qəbul Prosesi',d:'Yazılı işə qəbul proseduru, structured intervyu formatı, namizəd qiymətləndirmə bölməsi (scorecard), background check sistematikliyi, adaptasiya proseduru (onboarding checklist, buddy sistemi) — olaraq həyata keçirilməlidir.',t2:'3–5 Ay'},
+  {p:'p2',n:'06',t:'Performans İdarəetməsinin Təkmilləşdirilməsi',d:'Objective-based performans qiymətləndirilməsi (KPI), performans-mükafat əlaqəsinin qurulması, PIP (Performance Improvement Plan) proseduru, 360 platformasının yenilənməsi, feedback mədəniyyətinin non-Agile tərəfə yayılması.',t2:'3–6 Ay'},
+  {p:'p2',n:'07',t:'HR Risk Reyestri və Monitoring Mexanizmi',d:'Daxili HR Risk Reyestri yaradılmalı, audit tapıntılarının izlənilməsi daxili prosesə çevrilməlidir. Hal-hazırda tapıntılar yalnız xarici audit tərəfindən izlənilir — bu daxili nəzarət boşluğudur.',t2:'2–4 Ay'},
+  {p:'p3',n:'08',t:'L&D Strukturunun Gücləndirilməsi',d:'Müstəqil L&D şöbəsi, illik təlim planı, Training Needs Analysis, texniki təlimlər, mentorluq & coaching proqramı, IDP-nin formalizasiyası — bunların hamısı L&D funksiyasının effektivliyini artıracaq.',t2:'4–8 Ay'},
+  {p:'p3',n:'09',t:'HR Analitika Platformasının Qurulması',d:'BI/Power BI inteqrasiyası, real-time dashboard, absenteeism izlənilməsi üçün turniket+HRIS inteqrasiyası, cost-per-hire konsolidasiyası, eNPS tətbiqi, exit interview nəticələrinin analizi.',t2:'4–6 Ay'},
+  {p:'p4',n:'10',t:'Sənəd İdarəetmə Sisteminin Modernizasiyası',d:'Elektron sənəd dövriyyəsinin qurulması, saxlama müddətlərinin standartlaşdırılması, sənəd idarəetmə siyasəti, RACI matrisi, vəzifə təlimatlarının tam tamamlanması (qalan 20 vəzifə).',t2:'6–12 Ay'},
+];
+
+const rl=document.getElementById('rec-list');
+recs.forEach(r=>{
+  const el=document.createElement('div');
+  el.className=`rec ${r.p}`;
+  el.innerHTML=`
+    <div class="rec-n">${r.n}</div>
+    <div class="rec-body">
+      <h4>${r.t}</h4>
+      <p>${r.d}</p>
+      <div><span class="rtag" style="background:rgba(232,0,29,.08);color:var(--red);border:1px solid rgba(232,0,29,.2)">⏱ ${r.t2}</span></div>
+    </div>`;
+  rl.appendChild(el);
+});
+
+/* ===== SPEEDOMETER ===== */
+function drawSpeedometer(val){
+  const c=document.getElementById('speedoCanvas');
+  if(!c)return;
+  const ctx=c.getContext('2d');
+  const W=280,H=160,cx=140,cy=145,r=110;
+  ctx.clearRect(0,0,W,H);
+  const isDark=document.documentElement.getAttribute('data-theme')==='dark';
+  const tc=isDark?'rgba(255,255,255,0.3)':'rgba(0,0,0,0.3)';
+  const pi=Math.PI;
+  // Zones
+  const zones=[{f:0,t:30,c:'#E8001D'},{f:30,t:55,c:'#FF5200'},{f:55,t:75,c:'#FF9500'},{f:75,t:100,c:'#22C55E'}];
+  zones.forEach(z=>{
+    const sa=pi+(z.f/100)*pi,ea=pi+(z.t/100)*pi;
+    ctx.beginPath();ctx.arc(cx,cy,r,sa,ea);
+    ctx.lineWidth=18;ctx.strokeStyle=z.c;ctx.globalAlpha=.65;ctx.stroke();ctx.globalAlpha=1;
+  });
+  // Track
+  const segs=[{f:0,t:25},{f:25,t:50},{f:50,t:75},{f:75,t:100}];
+  segs.forEach(s=>{
+    const sa=pi+(s.f/100)*pi,ea=pi+(s.t/100)*pi;
+    ctx.beginPath();ctx.arc(cx,cy,r-1,sa,ea);
+    ctx.lineWidth=2;ctx.strokeStyle=isDark?'rgba(255,255,255,.05)':'rgba(0,0,0,.08)';ctx.stroke();
+  });
+  // Ticks
+  for(let i=0;i<=10;i++){
+    const a=pi+(i/10)*pi;
+    ctx.beginPath();ctx.moveTo(cx+Math.cos(a)*(r-20),cy+Math.sin(a)*(r-20));
+    ctx.lineTo(cx+Math.cos(a)*(r-30),cy+Math.sin(a)*(r-30));
+    ctx.lineWidth=i%5===0?2:1;ctx.strokeStyle=tc;ctx.stroke();
+    if(i%5===0){
+      ctx.fillStyle=tc;ctx.font='bold 9px Montserrat';ctx.textAlign='center';ctx.textBaseline='middle';
+      ctx.fillText(i*10,cx+Math.cos(a)*(r-44),cy+Math.sin(a)*(r-44));
+    }
+  }
+  // Needle
+  const nA=pi+(val/100)*pi;
+  const ng=ctx.createLinearGradient(cx,cy,cx+Math.cos(nA)*(r-22),cy+Math.sin(nA)*(r-22));
+  ng.addColorStop(0,'rgba(255,149,0,0.15)');ng.addColorStop(1,'#FF9500');
+  ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+Math.cos(nA)*(r-22),cy+Math.sin(nA)*(r-22));
+  ctx.lineWidth=3;ctx.strokeStyle=ng;ctx.lineCap='round';ctx.stroke();
+  // Center
+  const cg=ctx.createRadialGradient(cx,cy,0,cx,cy,10);
+  cg.addColorStop(0,'#FF9500');cg.addColorStop(1,'#CC7700');
+  ctx.beginPath();ctx.arc(cx,cy,10,0,2*pi);ctx.fillStyle=cg;ctx.fill();
+  // Labels
+  ctx.font='bold 10px Montserrat';ctx.textAlign='center';ctx.fillStyle=tc;
+  ctx.fillText('KRİTİK',cx-78,cy+22);ctx.fillText('ƏLADƏ',cx+76,cy+22);
+}
+
+let spd=0;
+function animSpd(){
+  if(spd<55){
+    spd=Math.min(spd+0.6,55);
+    drawSpeedometer(spd);
+    document.getElementById('speedoVal').textContent=Math.round(spd);
+    requestAnimationFrame(animSpd);
+  }
+}
+
+/* ===== CHARTS ===== */
+let pie,bar;
+function buildCharts(){
+  const isDark=document.documentElement.getAttribute('data-theme')==='dark';
+  const tc=isDark?'rgba(255,255,255,0.4)':'rgba(0,0,0,0.45)';
+  const gc=isDark?'rgba(255,255,255,0.05)':'rgba(0,0,0,0.07)';
+  if(pie)pie.destroy();if(bar)bar.destroy();
+  pie=new Chart(document.getElementById('pieChart'),{
+    type:'doughnut',
+    data:{
+      labels:[`Uyğun ${cntOk}`,`Qismən ${cntW}`,`Risk ${cntF}`,`Məlumat ${cntI}`],
+      datasets:[{data:[cntOk,cntW,cntF,cntI],backgroundColor:['#22C55E','#FF9500','#E8001D','#FF9600'],borderWidth:0,hoverOffset:10}]
+    },
+    options:{cutout:'62%',plugins:{legend:{position:'bottom',labels:{color:tc,font:{family:'Montserrat',size:10,weight:'700'},padding:14,boxWidth:11}}},animation:{duration:1400}}
+  });
+  const catLabels=Object.keys(cats).map(k=>k.replace(/^\d+\.\s*/,'').replace(/\s*\(.*\)/,'').substring(0,18)+'…');
+  bar=new Chart(document.getElementById('barChart'),{
+    type:'bar',
+    data:{
+      labels:catLabels,
+      datasets:[
+        {label:'Risk',data:Object.values(cats).map(c=>c.f),backgroundColor:'#E8001D',borderRadius:0},
+        {label:'Qismən',data:Object.values(cats).map(c=>c.w),backgroundColor:'#FF9500',borderRadius:0},
+        {label:'Uyğun',data:Object.values(cats).map(c=>c.ok),backgroundColor:'#22C55E',borderRadius:0},
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,indexAxis:'y',
+      scales:{
+        x:{stacked:true,ticks:{color:tc,font:{family:'Montserrat',size:9,weight:'600'}},grid:{color:gc},border:{display:false}},
+        y:{stacked:true,ticks:{color:tc,font:{family:'Montserrat',size:9.5,weight:'700'},padding:6},grid:{display:false},border:{display:false}}
+      },
+      plugins:{
+        legend:{position:'top',labels:{color:tc,font:{family:'Montserrat',size:10,weight:'700'},padding:16,boxWidth:12}},
+        tooltip:{backgroundColor:isDark?'rgba(20,20,25,.95)':'rgba(255,255,255,.95)',titleColor:isDark?'#F2EDE6':'#1A1510',bodyColor:isDark?'#9990a0':'#6B6258',borderColor:isDark?'rgba(255,255,255,.1)':'rgba(0,0,0,.1)',borderWidth:1,titleFont:{family:'Montserrat',weight:'800'},bodyFont:{family:'Montserrat'},padding:12,cornerRadius:0}
+      },
+      animation:{duration:1200}
+    }
+  });
+}
+buildCharts();
+
+/* ===== SCROLL ===== */
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  document.getElementById('prog').style.width=(window.scrollY/(h.scrollHeight-h.clientHeight)*100)+'%';
+});
+const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis');});},{threshold:.07});
+document.querySelectorAll('.fade-up').forEach(el=>io.observe(el));
+
+/* ===== INIT ===== */
+setTimeout(()=>{
+  document.querySelectorAll('.sc-bar-fill[data-w]').forEach(el=>{el.style.width=el.dataset.w+'%';});
+  animSpd();
+},700);
+</script>
+</body>
+</html>
