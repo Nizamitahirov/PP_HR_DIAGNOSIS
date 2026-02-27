@@ -137,8 +137,8 @@ hr.div{height:1px;background:var(--border);margin:0 80px;border:none;}
 .mcell.m-p{background:rgba(255,82,0,.04);border-color:rgba(255,82,0,.15);}
 .mcell.m-d{background:rgba(255,149,0,.03);border-color:rgba(255,149,0,.12);}
 .mcell.m-f{background:rgba(34,197,94,.03);border-color:rgba(34,197,94,.12);}
-.mcell-lbl{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin-bottom:10px;}
-.mtag{display:inline-block;font-size:10px;background:var(--bg3);color:var(--text2);padding:3px 8px;margin:2px;border:1px solid var(--border2);font-weight:600;}
+.mcell-lbl{font-size:15px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin-bottom:10px;}
+.mtag{display:inline-block;font-size:15px;background:var(--bg3);color:var(--text2);padding:3px 8px;margin:2px;border:1px solid var(--border2);font-weight:600;}
 
 /* Detail Tables */
 #detail-tables{padding:0 80px 80px;}
@@ -183,6 +183,186 @@ hr.div{height:1px;background:var(--border);margin:0 80px;border:none;}
 .rec-body p{font-size:12.5px;color:var(--text2);line-height:1.75;}
 .rtag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;margin-right:5px;margin-top:8px;}
 
+  /* ===== SWOT ===== */
+.swot-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:3px;background:var(--border);}
+.swot-cell{padding:36px 38px;position:relative;overflow:hidden;}
+.swot-cell::before{content:'';position:absolute;inset:0;opacity:.03;}
+.swot-s{background:var(--bg2);}
+.swot-w{background:var(--bg2);}
+.swot-o{background:var(--bg2);}
+.swot-t{background:var(--bg2);}
+.swot-s::after{content:'S';position:absolute;right:-10px;bottom:-30px;font-size:180px;font-weight:900;color:var(--ok);opacity:.04;line-height:1;pointer-events:none;font-family:var(--font);}
+.swot-w::after{content:'W';position:absolute;right:-10px;bottom:-30px;font-size:180px;font-weight:900;color:var(--fail);opacity:.04;line-height:1;pointer-events:none;font-family:var(--font);}
+.swot-o::after{content:'O';position:absolute;right:-10px;bottom:-30px;font-size:180px;font-weight:900;color:var(--amber);opacity:.04;line-height:1;pointer-events:none;font-family:var(--font);}
+.swot-t::after{content:'T';position:absolute;right:-10px;bottom:-30px;font-size:180px;font-weight:900;color:var(--orange);opacity:.04;line-height:1;pointer-events:none;font-family:var(--font);}
+.swot-header{display:flex;align-items:center;gap:18px;margin-bottom:24px;padding-bottom:18px;border-bottom:1px solid var(--border);}
+.swot-letter{font-size:52px;font-weight:900;line-height:1;min-width:52px;}
+.swot-s .swot-letter{color:var(--ok);}
+.swot-w .swot-letter{color:var(--fail);}
+.swot-o .swot-letter{color:var(--amber);}
+.swot-t .swot-letter{color:var(--orange);}
+.swot-label{display:flex;flex-direction:column;gap:3px;}
+.swot-label{font-size:16px;font-weight:800;color:var(--text);}
+.swot-label span{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--text3);}
+.swot-list{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.swot-list li{font-size:12.5px;color:var(--text2);line-height:1.65;padding-left:16px;position:relative;}
+.swot-list li::before{content:'';position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;}
+.swot-s .swot-list li::before{background:var(--ok);}
+.swot-w .swot-list li::before{background:var(--fail);}
+.swot-o .swot-list li::before{background:var(--amber);}
+.swot-t .swot-list li::before{background:var(--orange);}
+@media(max-width:900px){.swot-grid{grid-template-columns:1fr;}}
+  
+  /* ===== McKINSEY 7S ===== */
+.s7-radar-wrap{display:flex;flex-direction:column;align-items:center;gap:16px;margin-bottom:48px;max-width:320px;margin-left:auto;margin-right:auto;}
+.s7-legend{display:flex;gap:24px;}
+.s7-leg-item{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;color:var(--text3);}
+.s7-dot{width:10px;height:10px;border-radius:50%;}
+.s7-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:36px;}
+.s7-card{background:var(--bg2);border:1px solid var(--border);padding:26px 28px;transition:border-color .2s,transform .2s;}
+.s7-card:hover{border-color:rgba(232,0,29,.2);transform:translateY(-2px);}
+.s7-card-head{display:flex;align-items:flex-start;gap:14px;margin-bottom:14px;}
+.s7-num{font-size:11px;font-weight:800;color:var(--text3);letter-spacing:1px;min-width:20px;margin-top:3px;}
+.s7-info{flex:1;}
+.s7-name{font-size:15px;font-weight:800;line-height:1.2;}
+.s7-en{font-size:10px;font-weight:600;color:var(--text3);letter-spacing:1.5px;text-transform:uppercase;margin-left:6px;}
+.s7-type{font-size:9.5px;font-weight:700;color:var(--text3);letter-spacing:1.5px;text-transform:uppercase;margin-top:4px;}
+.s7-score-wrap{display:flex;align-items:baseline;gap:2px;}
+.s7-score{font-size:38px;font-weight:900;line-height:1;}
+.s7-score-lbl{font-size:13px;color:var(--text3);font-weight:700;}
+.s7-bar-track{height:3px;background:var(--bg4);margin-bottom:16px;}
+.s7-bar-fill{height:100%;transition:width 1.4s cubic-bezier(.4,0,.2,1);}
+.s7-desc{font-size:12px;color:var(--text2);line-height:1.75;margin-bottom:14px;}
+.s7-findings{display:flex;flex-wrap:wrap;gap:6px;}
+.s7-tag{font-size:9.5px;font-weight:700;padding:3px 9px;letter-spacing:.4px;}
+.s7-tag.s7-ok{background:rgba(34,197,94,.08);color:var(--ok);border:1px solid rgba(34,197,94,.2);}
+.s7-tag.s7-w{background:rgba(255,149,0,.08);color:var(--warn);border:1px solid rgba(255,149,0,.2);}
+.s7-tag.s7-f{background:rgba(232,0,29,.08);color:var(--fail);border:1px solid rgba(232,0,29,.2);}
+.s7-alignment{background:var(--bg2);border:1px solid var(--border);padding:36px;}
+.s7-align-title{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:20px;}
+.s7-align-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.s7-align-item{padding:18px 20px;border:1px solid var(--border);}
+.s7-align-critical{border-left:3px solid var(--fail);}
+.s7-align-warn{border-left:3px solid var(--warn);}
+.s7-align-ok{border-left:3px solid var(--ok);}
+.s7-align-pair{font-size:12px;font-weight:800;margin-bottom:8px;}
+.s7-align-critical .s7-align-pair{color:var(--fail);}
+.s7-align-warn .s7-align-pair{color:var(--warn);}
+.s7-align-ok .s7-align-pair{color:var(--ok);}
+.s7-align-desc{font-size:11.5px;color:var(--text2);line-height:1.65;}
+@media(max-width:1100px){.s7-grid{grid-template-columns:repeat(2,1fr);}.s7-align-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:640px){.s7-grid{grid-template-columns:1fr;}.s7-align-grid{grid-template-columns:1fr;}}
+  
+  /* ===== MATURITY MODEL ===== */
+.mat-legend{display:flex;gap:12px;margin-bottom:40px;flex-wrap:wrap;}
+.mat-leg{display:flex;align-items:center;gap:10px;}
+.mat-leg-n{width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:white;}
+.mat-leg-l{display:flex;flex-direction:column;gap:1px;}
+.mat-leg-l{font-size:12px;font-weight:700;color:var(--text);}
+.mat-leg-l span{font-size:10px;color:var(--text3);font-weight:500;}
+.mat-grid{display:flex;flex-direction:column;gap:4px;margin-bottom:32px;}
+.mat-row{display:grid;grid-template-columns:280px 1fr 52px;align-items:center;gap:20px;padding:14px 20px;background:var(--bg2);border:1px solid var(--border);transition:background .2s;}
+.mat-row:hover{background:var(--bg3);}
+.mat-name{font-size:13px;font-weight:700;margin-bottom:3px;}
+.mat-note{font-size:10.5px;color:var(--text3);}
+.mat-track-wrap{position:relative;}
+.mat-track{height:6px;background:var(--bg4);position:relative;}
+.mat-fill{height:100%;transition:width 1.4s cubic-bezier(.4,0,.2,1);}
+.mat-badge{font-size:13px;font-weight:900;padding:4px 8px;text-align:center;font-family:var(--mono);}
+.mat-overall{display:grid;grid-template-columns:1fr 1fr;gap:3px;background:var(--border);border:1px solid var(--border);}
+.mat-ov-left,.mat-ov-right{background:var(--bg2);padding:36px 40px;}
+.mat-ov-left{border-right:none;}
+.mat-ov-label,.mat-ov-next-label{font-size:9.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:10px;}
+.mat-ov-score{font-size:64px;font-weight:900;line-height:1;color:var(--warn);margin-bottom:6px;}
+.mat-ov-score span,.mat-ov-next-score span{font-size:22px;color:var(--text3);font-weight:600;}
+.mat-ov-next-score{font-size:64px;font-weight:900;line-height:1;color:var(--ok);margin-bottom:6px;}
+.mat-ov-tier{font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--warn);margin-bottom:14px;}
+.mat-ov-next-tier{font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--ok);margin-bottom:14px;}
+.mat-ov-desc{font-size:12.5px;color:var(--text2);line-height:1.75;}
+@media(max-width:900px){
+  .mat-row{grid-template-columns:1fr 52px;}.mat-label{grid-column:1/-1;}
+  .mat-overall{grid-template-columns:1fr;}
+}
+  
+  /* ===== ROOT CAUSE ANALYSIS ===== */
+.rca-tree{display:flex;flex-direction:column;gap:0;margin-bottom:40px;}
+.rca-connector{width:2px;height:32px;background:var(--border);margin-left:20px;}
+.rca-root{border:1px solid var(--border);background:var(--bg2);}
+.rca-root-badge{display:inline-block;font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border:1px solid;margin:28px 28px 0;}
+.rca-root-title{font-size:18px;font-weight:800;padding:12px 28px 8px;line-height:1.3;}
+.rca-root-desc{font-size:12.5px;color:var(--text2);padding:0 28px 24px;line-height:1.75;border-bottom:1px solid var(--border);}
+.rca-branches{padding:20px 28px;display:flex;flex-direction:column;gap:16px;}
+.rca-branch{display:flex;gap:14px;align-items:flex-start;}
+.rca-branch-icon{font-size:16px;color:var(--text3);font-weight:700;margin-top:2px;min-width:16px;}
+.rca-branch-body{flex:1;background:var(--bg3);border:1px solid var(--border);padding:16px 18px;}
+.rca-branch-title{font-size:13px;font-weight:800;margin-bottom:6px;}
+.rca-branch-desc{font-size:11.5px;color:var(--text2);line-height:1.7;margin-bottom:10px;}
+.rca-effects{display:flex;flex-wrap:wrap;gap:6px;}
+.rca-eff{font-size:9.5px;font-weight:700;padding:3px 9px;letter-spacing:.3px;}
+.rca-eff.rca-f{background:rgba(232,0,29,.08);color:var(--fail);border:1px solid rgba(232,0,29,.2);}
+.rca-eff.rca-w{background:rgba(255,149,0,.08);color:var(--warn);border:1px solid rgba(255,149,0,.2);}
+.rca-summary{background:var(--bg2);border:1px solid var(--border);padding:32px 36px;}
+  
+ /* ===== RISK HEAT MAP ===== */
+.hm-wrap{display:flex;gap:0;margin-bottom:32px;align-items:stretch;}
+.hm-yaxis{writing-mode:vertical-rl;transform:rotate(180deg);display:flex;justify-content:space-between;font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text3);padding:8px 12px 8px 0;min-width:32px;}
+.hm-matrix-wrap{flex:1;display:flex;flex-direction:column;gap:0;}
+.hm-xaxis{display:flex;justify-content:space-between;font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text3);padding:0 0 10px 120px;}
+.hm-matrix{display:grid;grid-template-columns:120px repeat(4,1fr);grid-template-rows:auto repeat(4,auto);gap:3px;}
+.hm-corner{background:transparent;}
+.hm-col-head{background:var(--bg3);border:1px solid var(--border);padding:8px;text-align:center;font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);}
+.hm-row-head{background:var(--bg3);border:1px solid var(--border);padding:12px 14px;display:flex;align-items:center;font-size:10px;font-weight:800;color:var(--text3);letter-spacing:.5px;}
+.hm-cell{border:1px solid transparent;padding:12px;display:flex;flex-direction:column;gap:7px;min-height:90px;transition:filter .2s;}
+.hm-cell:hover{filter:brightness(1.1);}
+.hm-dot{font-size:10.5px;font-weight:700;line-height:1.4;padding:4px 7px;display:inline-block;}
+
+.hm-critical{background:#E8001D;border-color:#c20019;}
+.hm-critical .hm-dot{color:#fff;background:rgba(0,0,0,0.2);}
+
+.hm-high{background:#FF5200;border-color:#d94600;}
+.hm-high .hm-dot{color:#fff;background:rgba(0,0,0,0.18);}
+
+.hm-medium{background:#FF9500;border-color:#d97e00;}
+.hm-medium .hm-dot{color:#fff;background:rgba(0,0,0,0.15);}
+
+.hm-low{background:#FFD700;border-color:#d9b800;}
+.hm-low .hm-dot{color:#1a1510;background:rgba(0,0,0,0.1);}
+
+[data-theme="light"] .hm-critical{background:#E8001D;border-color:#c20019;}
+[data-theme="light"] .hm-critical .hm-dot{color:#fff;background:rgba(0,0,0,0.2);}
+[data-theme="light"] .hm-high{background:#FF5200;border-color:#d94600;}
+[data-theme="light"] .hm-high .hm-dot{color:#fff;background:rgba(0,0,0,0.18);}
+[data-theme="light"] .hm-medium{background:#FF9500;border-color:#d97e00;}
+[data-theme="light"] .hm-medium .hm-dot{color:#fff;background:rgba(0,0,0,0.15);}
+[data-theme="light"] .hm-low{background:#FFD700;border-color:#d9b800;}
+[data-theme="light"] .hm-low .hm-dot{color:#1a1510;background:rgba(0,0,0,0.1);}
+
+.hm-legend{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:28px;}
+.hm-leg-item{display:flex;align-items:center;gap:10px;}
+.hm-leg-color{width:16px;height:16px;flex-shrink:0;}
+.hm-leg-text{font-size:12px;color:var(--text2);}
+
+.hm-count-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;background:var(--border);}
+.hm-count{padding:24px 28px;background:var(--bg2);}
+.hm-count-n{font-size:48px;font-weight:900;line-height:1;margin-bottom:6px;}
+.hm-count-l{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+.hm-count-d{font-size:11px;color:var(--text3);}
+.hm-count-c .hm-count-n,.hm-count-c .hm-count-l{color:#E8001D;}
+.hm-count-h .hm-count-n,.hm-count-h .hm-count-l{color:#FF5200;}
+.hm-count-m .hm-count-n,.hm-count-m .hm-count-l{color:#FF9500;}
+.hm-count-l2 .hm-count-n,.hm-count-l2 .hm-count-l{color:#FFD700;}
+
+@media(max-width:900px){
+  .hm-matrix{grid-template-columns:80px repeat(4,1fr);}
+  .hm-xaxis{padding-left:80px;}
+  .hm-count-strip{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:600px){
+  .hm-matrix{grid-template-columns:60px repeat(2,1fr);}
+  .hm-wrap{flex-direction:column;}
+  .hm-yaxis{writing-mode:horizontal-tb;transform:none;}
+}
+  
 /* Footer */
 footer{background:var(--bg2);border-top:1px solid var(--border);padding:48px 80px;display:flex;align-items:center;justify-content:space-between;}
 .footer-logo{font-weight:900;font-size:28px;letter-spacing:5px;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
@@ -221,7 +401,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:48px 80p
 <div id="prog"></div>
 
 <nav>
-  <div class="nav-logo">PASHAPAY × HR AUDİT</div>
+  <div class="nav-logo">PASHAPAY × HR DİAQNOZTİKA</div>
   <div class="nav-links">
     <a href="#summary">Xülasə</a>
     <a href="#statistics">Statistika</a>
@@ -244,13 +424,13 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:48px 80p
 <section class="hero" id="top">
   <div class="hero-bg"></div>
   <div class="hero-left">
-    <div class="kicker"><div class="kicker-dot"></div>Məxfi · Yalnız Rəhbərlik Üçün · 2025</div>
+    <div class="kicker"><div class="kicker-dot"></div>Məxfi · Yalnız Rəhbərlik Üçün · 2026</div>
     <h1 class="hero-title">
       <span>HR DEP.</span>
       <span class="grad">KOMPLEKS</span>
-      <span>AUDIT</span>
+      <span>DİAQNOZTİKA</span>
     </h1>
-    <p class="hero-sub">PashaPay MMC İnsan Resursları departamentinin əhatəli auditi: siyasət boşluqları, qanunvericiliyə uyğunluq, sistem vəziyyəti, performans idarəetməsi, əmək münasibətləri, əmək haqqı, məzuniyyət, təlim & inkişaf, SƏTƏM, işçi məşğulluğu — 16 əsas sahə üzrə 200+ maddə.</p>
+    <p class="hero-sub">PashaPay-in İnsan Resursları departamenti üzrə proseslərin əhatəli diaqnoztikası: siyasət boşluqları, qanunvericiliyə uyğunluq, sistem vəziyyəti, performans idarəetməsi, əmək münasibətləri, əmək haqqı, məzuniyyət, təlim & inkişaf, SƏTƏM, işçi məşğulluğu — 16 əsas sahə üzrə 200+ maddə.</p>
     <div class="hero-pills">
       <div class="pill"><div class="pill-dot" style="background:var(--fail)"></div>Siyasət Boşluqları</div>
       <div class="pill"><div class="pill-dot" style="background:var(--warn)"></div>HRIS Qeyri-funksionallığı</div>
@@ -272,7 +452,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:48px 80p
           <div style="font-size:11px;color:var(--text3);font-weight:700;letter-spacing:2px;">/ 100</div>
         </div>
         <div style="display:flex;justify-content:center;margin-bottom:22px;">
-          <div class="sc-verdict">⚠ Proseslərin inkişaf etməsi kritik əhəmiyyətlidir</div>
+          <div class="sc-verdict">⚠ Proseslərin inkişaf etdirilməsi kritik əhəmiyyətlidir</div>
         </div>
         <div class="sc-bars">
           <div class="sc-bar-row"><span class="sc-bar-lbl">Uyğun</span><div class="sc-bar-track"><div class="sc-bar-fill" style="width:0%;background:var(--ok);" data-w="55"></div></div><span class="sc-bar-val" style="color:var(--ok)" id="barOk">—</span></div>
@@ -292,7 +472,74 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:48px 80p
   <div class="eyebrow">Executive Summary</div>
   <div class="sec-title">Xülasə</div>
   <div class="hl-box">
-    <p><strong>Ümumi nəticə:</strong> HR Departamentinin auditi göstərir ki, əsas proseslər kağız üzərindədir, lakin sənədləşmə boşluqları kritik mərhələdədir. Siyasət çərçivəsi yarımçıqdır, HRIS sistemi tam işlək deyil, performans idarəetməsi strukturlaşdırılmamışdır. Bir sıra sahələrdə Azərbaycan Əmək Məcəlləsinin tələblərinə uyğunsuzluqlar aşkarlanmışdır.</p>
+    <p><strong>Ümumi nəticə:</strong> PashaPay MMC İnsan Resursları departamentinin kompleks auditi 16 əsas sahə, 248 maddə üzərində aparılmış və departamentin cari vəziyyətinin hərtərəfli mənzərəsini ortaya qoymuşdur. Audit nəticəsində <strong>61 boşluq/risk, 76 qismən uyğun, 105 tam uyğun</strong> tapıntı qeydə alınmışdır. <strong>HR Departament Sağlamlıq İndeksi 42/100-dür.</strong>
+<br><br>
+Ümumi qiymətləndirmə göstərir ki, HR departamenti əməliyyat səviyyəsində fəaliyyətini davam etdirir — əmək haqqı hesablamaları, məzuniyyət rəsmiləşdirilməsi, sənəd arxivləşdirilməsi, sosial sığorta və vergi hesabatları əsasən qaydalara uyğun aparılır. Lakin departamentin strateji əsasını təşkil edən siyasət çərçivəsi, sistem infrastrukturu, performans idarəetməsi və uyğunluq mexanizmləri ciddi boşluqlar ehtiva edir.
+<br><br>
+<strong>Siyasət çərçivəsi yarımçıqdır.</strong> İşə qəbul proseduru, intizam araşdırma siyasəti, intizam tənbehi matrisi, şikayət mexanizmi, DEI siyasəti, anti-diskriminasiya siyasəti, əmək haqqı siyasəti, GDPR proseduru, offboarding guideline, HR risk reyestri — bunların heç biri yazılı formada mövcud deyildir. Etik kodeks mövcuddur və əhatəlidir; lakin bu tək sənəd bütün siyasət boşluqlarını örtmür. Hal-hazırda departament yazılı prosedurlar əvəzinə şifahi razılaşmalar, mail yazışmaları və fərdi qərarvermə əsasında idarə olunur. Bu vəziyyət həm hüquqi riskini, həm də audit müdafiəsinin çətinliyini artırır.
+<br><br>
+<strong>HRIS sistemi (1C) əsas funksiyaları yerinə yetirmir.</strong> Payroll modulundan imtina edilib, məzuniyyət uçotu üçün ayrıca sistem alınıb, iş vaxtı davamiyyəti izlənilmir, dövlət hesabatları manual aparılır. Sistem Azərbaycan Əmək Məcəlləsi normativləri ilə deyil, Rusiya qanunvericiliyi ilə işləyir. Məlumat maskalanması, 2FA, audit log, test mühiti — bunların heç biri mövcud deyildir. Excel faktiki inteqrasiya mərkəzinə çevrilmişdir.
+<br><br>
+<strong>Performans idarəetməsi strukturlaşdırılmamışdır.</strong> İldə iki dəfə 360 dərəcə qiymətləndirmə aparılır, lakin bu qiymətləndirmə yalnız kompetensiyaları əhatə edir — objective-based performans qiymətləndirilməsi mövcud deyildir. Bonus sistemi performans nəticələri ilə əlaqəli deyildir; mükafatlandırma vəzifə kateqoriyasına görə fix olaraq müəyyən edilir. PIP proseduru, KPI sistemi, fərdi inkişaf planları (IDP) tətbiq edilmir. Texniki əməkdaşlar üçün mövcud olan artım modeli (KİM) qismən işləkdir, lakin non-Agile hissə üçün struktur çatışmır.
+<br><br>
+<strong>DEI sahəsi tam boşdur.</strong> Müxtəliflik, bərabərlik və inklüzivlik siyasəti, equal opportunity, anti-diskriminasiya, harassment qarşısının alınması, gender pay gap monitorinqi, diversity metrics — bunların heç biri mövcud deyildir. Əlillik kvotasına riayət edilmir; mövcud kvota həlli şirkətin öz qaydalarına ziddir.
+<br><br>
+<strong>Müsbət tərəflər də qeyd olunmalıdır.</strong> Şirkətin sosial paketi (tibbi sığorta, idman abunəliyi, ADA təhsil dəstəyi, həyat sığortası, nəqliyyat kompensasiyası) rəqabətqabiliyyətlidir. Əmək münasibətlərinin rəsmiləşdirilməsi — müqavilə dəyişiklikləri, ƏMAS qeydiyyatı, intizam cəzası prosesi — əsasən qaydalara uyğun aparılır. İşçi məşğulluğu sahəsində WTW surveylər, pulse surveylər, team building tədbirləri müsbət qiymətləndirilir. SƏTƏM sahəsinin böyük əksəriyyəti uyğundur.
+    <br><br>
+<strong>Metodologiya:</strong> Sistem Sağlamlıq İndeksi çəkili risk metodologiyası ilə hesablanmışdır. Hər tapıntıya status kateqoriyasına uyğun performans balı və ağırlıq çarpanı tətbiq edilmiş, faktiki çəkili bal maksimum mümkün bala bölünərək indeks alınmışdır. Bu yanaşma ISO 27001 və COSO çərçivəsinə əsaslanır — boşluq/risk tapıntılarının indeksə təsiri uyğun tapıntılara nisbətən 3 qat daha böyükdür.
+<br><br>
+<table style="width:100%;border-collapse:collapse;font-size:12px;margin-top:4px;">
+  <thead>
+    <tr>
+      <th style="text-align:left;padding:8px 12px;border:1px solid var(--border2);background:var(--bg3);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);font-weight:800;">Status</th>
+      <th style="text-align:center;padding:8px 12px;border:1px solid var(--border2);background:var(--bg3);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);font-weight:800;">Say</th>
+      <th style="text-align:center;padding:8px 12px;border:1px solid var(--border2);background:var(--bg3);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);font-weight:800;">Performans Balı</th>
+      <th style="text-align:center;padding:8px 12px;border:1px solid var(--border2);background:var(--bg3);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);font-weight:800;">Çarpan</th>
+      <th style="text-align:center;padding:8px 12px;border:1px solid var(--border2);background:var(--bg3);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);font-weight:800;">Çəkili Cəm</th>
+      <th style="text-align:center;padding:8px 12px;border:1px solid var(--border2);background:var(--bg3);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);font-weight:800;">Maksimum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="padding:9px 12px;border:1px solid var(--border);font-weight:700;color:var(--fail);">✗ Boşluq / Risk</td>
+      <td style="padding:9px 12px;border:1px solid var(--border);text-align:center;font-family:var(--mono);">61</td>
+      <td style="padding:9px 12px;border:1px solid var(--border);text-align:center;font-family:var(--mono);">0</td>
+      <td style="padding:9px 12px;border:1px solid var(--border);text-align:center;font-family:var(--mono);">×3</td>
+      <td style="padding:9px 12px;border:1px solid var(--border);text-align:center;font-family:var(--mono);font-weight:700;">0</td>
+      <td style="padding:9px 12px;border:1px solid var(--border);text-align:center;font-family:var(--mono);color:var(--text3);">18,300</td>
+    </tr>
+    <tr>
+      <td style="padding:9px 12px;border:1px solid var(--border);font-weight:700;color:var(--warn);">⚠ Qismən / İşlək</td>
+      <td style="padding:9px 12px;border:1px solid var(--border);text-align:center;font-family:var(--mono);">76</td>
+      <td style="padding:9px 12px;border:1px solid var(--border);text-align:center;font-family:var(--mono);">50</td>
+      <td style="padding:9px 12px;border:1px solid var(--border);text-align:center;font-family:var(--mono);">×2</td>
+      <td style="padding:9px 12px;border:1px solid var(--border);text-align:center;font-family:var(--mono);font-weight:700;">7,600</td>
+      <td style="padding:9px 12px;border:1px solid var(--border);text-align:center;font-family:var(--mono);color:var(--text3);">15,200</td>
+    </tr>
+    <tr>
+      <td style="padding:9px 12px;border:1px solid var(--border);font-weight:700;color:var(--ok);">✓ Uyğun / Mövcud</td>
+      <td style="padding:9px 12px;border:1px solid var(--border);text-align:center;font-family:var(--mono);">105</td>
+      <td style="padding:9px 12px;border:1px solid var(--border);text-align:center;font-family:var(--mono);">100</td>
+      <td style="padding:9px 12px;border:1px solid var(--border);text-align:center;font-family:var(--mono);">×1</td>
+      <td style="padding:9px 12px;border:1px solid var(--border);text-align:center;font-family:var(--mono);font-weight:700;">10,500</td>
+      <td style="padding:9px 12px;border:1px solid var(--border);text-align:center;font-family:var(--mono);color:var(--text3);">10,500</td>
+    </tr>
+    <tr>
+      <td style="padding:9px 12px;border:1px solid var(--border);font-weight:700;color:var(--amber);">ℹ Məlumat / Qeyd</td>
+      <td style="padding:9px 12px;border:1px solid var(--border);text-align:center;font-family:var(--mono);">6</td>
+      <td style="padding:9px 12px;border:1px solid var(--border);text-align:center;font-family:var(--mono);">75</td>
+      <td style="padding:9px 12px;border:1px solid var(--border);text-align:center;font-family:var(--mono);">×1</td>
+      <td style="padding:9px 12px;border:1px solid var(--border);text-align:center;font-family:var(--mono);font-weight:700;">450</td>
+      <td style="padding:9px 12px;border:1px solid var(--border);text-align:center;font-family:var(--mono);color:var(--text3);">600</td>
+    </tr>
+    <tr style="background:var(--bg3);">
+      <td style="padding:9px 12px;border:1px solid var(--border2);font-weight:800;" colspan="4">Cəmi → 18,550 ÷ 44,600 × 100</td>
+      <td style="padding:9px 12px;border:1px solid var(--border2);text-align:center;font-family:var(--mono);font-weight:900;font-size:14px;color:var(--warn);">42</td>
+      <td style="padding:9px 12px;border:1px solid var(--border2);text-align:center;font-family:var(--mono);color:var(--text3);">44,600</td>
+    </tr>
+  </tbody>
+</table>
+    </p>
   </div>
   <div class="sum-strip fade-up" id="sum-strip-el"></div>
   <div class="stat-bar" id="stat-bar-el"></div>
@@ -313,6 +560,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:48px 80p
 </section>
 
 <hr class="div">
+  
+  
 
 <!-- OVERVIEW BY CATEGORY -->
 <section id="statistics">
@@ -328,6 +577,881 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:48px 80p
 </section>
 
 <hr class="div">
+  
+  <hr class="div">
+
+<!-- ===== SWOT ===== -->
+<section id="swot">
+  <div class="eyebrow">Strateji Analiz</div>
+  <div class="sec-title">SWOT Analizi</div>
+  <div class="swot-grid fade-up">
+
+    <div class="swot-cell swot-s">
+      <div class="swot-header">
+        <div class="swot-letter">S</div>
+        <div class="swot-label">Güclü Tərəflər<span>Strengths</span></div>
+      </div>
+      <ul class="swot-list">
+        <li>HR to Employee Ratio qorunur — departament resurs baxımından adekvat</li>
+        <li>Etik davranış kodeksi mövcuddur, ətraflı və əhatəlidir</li>
+        <li>Əmək münasibətlərinin rəsmiləşdirilməsi (ƏMAS, müqavilə dəyişiklikləri) qaydalara uyğundur</li>
+        <li>Sosial paket rəqabətqabiliyyətlidir — tibbi sığorta, idman, ADA təhsil dəstəyi, həyat sığortası</li>
+        <li>İşçi məşğulluğu fəaliyyəti aktivdir — WTW surveylar, pulse surveylar, team building</li>
+        <li>SƏTƏM sahəsi əsasən uyğundur — attestasiya, təxliyyə planları, PPE mövcuddur</li>
+        <li>Vergi və DSMF hesabatları vaxtında, düzgün aparılır</li>
+        <li>İşe qəbulda standartlaşdırılmış Job Offer prosesi (Jira + şablon) mövcuddur</li>
+        <li>NDA bütün əməkdaşlarla imzalanır, SİMA qeydiyyatı düzgün aparılır</li>
+        <li>Pasha Holding Leadership DNA təlimləri keçirilib</li>
+      </ul>
+    </div>
+
+    <div class="swot-cell swot-w">
+      <div class="swot-header">
+        <div class="swot-letter">W</div>
+        <div class="swot-label">Zəif Tərəflər<span>Weaknesses</span></div>
+      </div>
+      <ul class="swot-list">
+        <li>Siyasət çərçivəsi yarımçıqdır — 10+ əsas prosedur yazılı formada mövcud deyil</li>
+        <li>HRIS sistemi (1C) əsas funksiyaları yerinə yetirmir — payroll, məzuniyyət, davamiyyət Excel-dədir</li>
+        <li>Performans idarəetməsi strukturlaşdırılmamışdır — KPI, PIP, IDP yoxdur</li>
+        <li>Bonus sistemi performansla əlaqəli deyil — vəzifə kateqoriyasına görə fix müəyyən edilib</li>
+        <li>DEI sahəsi tam boşdur — 7 siyasət/mexanizm mövcud deyil</li>
+        <li>Müstəqil L&D şöbəsi yoxdur — illik təlim planı, TNA aparılmayıb</li>
+        <li>RACI matrisi, vəzifə təlimatları (20 vəzifə) tamamlanmayıb</li>
+        <li>Offboarding, onboarding checklist, buddy sistemi mövcud deyil</li>
+        <li>HR Risk Reyestri yoxdur — tapıntılar yalnız xarici audit tərəfindən izlənilir</li>
+        <li>Şikayət mexanizmi, intizam araşdırma proseduru yazılı deyil</li>
+      </ul>
+    </div>
+
+    <div class="swot-cell swot-o">
+      <div class="swot-header">
+        <div class="swot-letter">O</div>
+        <div class="swot-label">İmkanlar<span>Opportunities</span></div>
+      </div>
+      <ul class="swot-list">
+        <li>HRIS tam tətbiqi ilə Excel asılılığı aradan qaldırıla, bütün proseslər avtomatlaşdırıla bilər</li>
+        <li>Agile transformasiya daxilindəki KİM artım modeli non-Agile hissəyə də tətbiq edilə bilər</li>
+        <li>iSpring platformasından tam istifadə ilə LMS, onboarding, compliance tam rəqəmsallaşa bilər</li>
+        <li>360 dərəcə qiymətləndirmənin objective-based performansla birləşdirilməsi güclü PM sistemi yaradır</li>
+        <li>Ekosistem səviyyəsindəki siyasətlər (etik kodeks, holding dəyərləri) vahid çərçivəyə çevrilə bilər</li>
+        <li>Turniket + HRIS inteqrasiyası ilə davamiyyət analitikası və absenteeism izlənilə bilər</li>
+        <li>Bank, ƏMAS, 1C ERP, DSMF inteqrasiyaları ilə tam avtomatlaşdırılmış payroll mümkündür</li>
+        <li>Talent management prosesinin strukturlaşdırılması ilə retention gücləndirilə bilər</li>
+        <li>Power BI inteqrasiyası ilə real-time HR dashboard və proqnoz analitikası qurula bilər</li>
+        <li>Succession planning prosesinin genişləndirilməsi kritik vəzifə risklərini azaldır</li>
+      </ul>
+    </div>
+
+    <div class="swot-cell swot-t">
+      <div class="swot-header">
+        <div class="swot-letter">T</div>
+        <div class="swot-label">Təhdidlər<span>Threats</span></div>
+      </div>
+      <ul class="swot-list">
+        <li>AZ Əmək Məcəlləsinə uyğunsuzluqlar əmək mübahisəsi halında şirkəti hüquqi məsuliyyət altına salır</li>
+        <li>HRIS-in işlək olmaması payroll xətası riskini artırır — kütləvi hesablama səhvi mümkündür</li>
+        <li>DEI siyasətinin olmaması beynəlxalq tərəfdaşlıq və akkreditasiya proseslərini çətinləşdirir</li>
+        <li>Yazılı prosedurların olmaması şirkətin auditor, dövlət orqanları, məhkəmə qarşısında müdafiəsini zəiflədir</li>
+        <li>Əlillik kvotası ilə bağlı cari vəziyyət əmək müfəttişliyi tərəfindən sanksiyaya səbəb ola bilər</li>
+        <li>Vendor asılılığı (HRIS, HRSS) sistem dəyişikliyi zamanı məlumat itkisi riskini artırır</li>
+        <li>HR Risk Reyestrinin olmaması risklərin erkən aşkarlanmasını qeyri-mümkün edir</li>
+        <li>Strukturlaşdırılmamış işə qəbul prosesi düzgün olmayan işə qəbul qərarlarının ehtimalını artırır</li>
+        <li>IDP və succession planning boşluğu key personnel itkisi zamanı bilik transferini çətinləşdirir</li>
+        <li>GDPR uyğunsuzluğu şəxsi məlumatların sızması halında tənzimləyici sanksiya riskini yaradır</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+  
+  <hr class="div">
+
+<!-- ===== McKINSEY 7S ===== -->
+<section id="mckinsey7s">
+  <div class="eyebrow">Strateji Analiz</div>
+  <div class="sec-title">McKinsey 7S Analizi</div>
+  <div class="hl-box" style="margin-bottom:44px;">
+    <p>McKinsey 7S modeli təşkilatın yeddi əsas elementinin bir-biri ilə uyğunluğunu qiymətləndirir. PashaPay HR departamenti üzrə aparılan audit nəticəsində bu elementlər arasında <strong>kritik uyğunsuzluqlar</strong> aşkarlanmışdır — xüsusilə "sərt" elementlər (Strategiya, Struktur, Sistem) ilə "yumşaq" elementlər (Dəyərlər, Bacarıqlar, Heyət, Üslub) arasındakı fərq nəzərəçarpacaq dərəcədə böyükdür.</p>
+  </div>
+
+  <!-- Radar/Spider visual -->
+  <div class="s7-radar-wrap fade-up">
+    <canvas id="radarChart" width="200" height="200"></canvas>
+    <div class="s7-legend">
+      <div class="s7-leg-item"><span class="s7-dot" style="background:rgba(232,0,29,1)"></span>Cari Vəziyyət</div>
+      <div class="s7-leg-item"><span class="s7-dot" style="background:rgba(255,150,0,.5)"></span>Hədəf Vəziyyət</div>
+    </div>
+  </div>
+
+  <!-- 7 cards -->
+  <div class="s7-grid fade-up">
+
+    <div class="s7-card" data-score="2">
+      <div class="s7-card-head">
+        <div class="s7-num">01</div>
+        <div class="s7-info">
+          <div class="s7-name">Strategiya <span class="s7-en">Strategy</span></div>
+          <div class="s7-type">Sərt Element</div>
+        </div>
+        <div class="s7-score-wrap">
+          <div class="s7-score" style="color:var(--fail)">2</div>
+          <div class="s7-score-lbl">/5</div>
+        </div>
+      </div>
+      <div class="s7-bar-track"><div class="s7-bar-fill" style="width:0%;background:var(--fail)" data-w="40"></div></div>
+      <p class="s7-desc">HR departamentinin yazılı strategiyası mövcud deyildir. Fəaliyyət reaktiv xarakter daşıyır — əməliyyat problemlərini həll etmək üzərində qurulub, strateji HR planlaşdırması (workforce planning, succession, talent pipeline) aparılmır. Holdingin strategiyasına uyğunlaşma mexanizmi formal deyil.</p>
+      <div class="s7-findings">
+        <span class="s7-tag s7-f">İllik HR planı yoxdur</span>
+        <span class="s7-tag s7-f">Workforce planning yoxdur</span>
+        <span class="s7-tag s7-f">HR Risk Reyestri yoxdur</span>
+        <span class="s7-tag s7-w">Holdinq strategiyasına qismən uyğunluq</span>
+      </div>
+    </div>
+
+    <div class="s7-card" data-score="3">
+      <div class="s7-card-head">
+        <div class="s7-num">02</div>
+        <div class="s7-info">
+          <div class="s7-name">Struktur <span class="s7-en">Structure</span></div>
+          <div class="s7-type">Sərt Element</div>
+        </div>
+        <div class="s7-score-wrap">
+          <div class="s7-score" style="color:var(--warn)">3</div>
+          <div class="s7-score-lbl">/5</div>
+        </div>
+      </div>
+      <div class="s7-bar-track"><div class="s7-bar-fill" style="width:0%;background:var(--warn)" data-w="60"></div></div>
+      <p class="s7-desc">Təşkilati struktur cədvəli mövcuddur və müntəzəm yenilənir. HR to Employee Ratio qorunur. Lakin RACI matrisi yoxdur, rol məsuliyyətləri yazılı müəyyən edilməyib, müstəqil L&D şöbəsi faktiki olaraq fəaliyyət göstərmir. Agile və non-Agile hissələr üzrə struktur fərqli yetkinlik səviyyəsindədir.</p>
+      <div class="s7-findings">
+        <span class="s7-tag s7-ok">Org chart mövcud və aktual</span>
+        <span class="s7-tag s7-ok">HR ratio adekvat</span>
+        <span class="s7-tag s7-f">RACI matrisi yoxdur</span>
+        <span class="s7-tag s7-f">L&D şöbəsi müstəqil deyil</span>
+        <span class="s7-tag s7-w">Vəzifə təlimatları tamamlanmayıb</span>
+      </div>
+    </div>
+
+    <div class="s7-card" data-score="2">
+      <div class="s7-card-head">
+        <div class="s7-num">03</div>
+        <div class="s7-info">
+          <div class="s7-name">Sistem <span class="s7-en">Systems</span></div>
+          <div class="s7-type">Sərt Element</div>
+        </div>
+        <div class="s7-score-wrap">
+          <div class="s7-score" style="color:var(--fail)">2</div>
+          <div class="s7-score-lbl">/5</div>
+        </div>
+      </div>
+      <div class="s7-bar-track"><div class="s7-bar-fill" style="width:0%;background:var(--fail)" data-w="40"></div></div>
+      <p class="s7-desc">HR sistemlərinin vəziyyəti ən kritik sahədir. 1C HRIS əsas funksiyaları yerinə yetirmir — payroll Excel-dədir, məzuniyyət ayrı sistemdədir, davamiyyət izlənilmir. 6 kritik inteqrasiya (ƏMAS, bank, ERP, DSMF, iSpring, turniket) mövcud deyildir. Siyasət çərçivəsi 10+ boşluq ehtiva edir. Excel qeyri-rəsmi inteqrasiya mərkəzinə çevrilmişdir.</p>
+      <div class="s7-findings">
+        <span class="s7-tag s7-f">HRIS funksional deyil</span>
+        <span class="s7-tag s7-f">6 kritik inteqrasiya yoxdur</span>
+        <span class="s7-tag s7-f">Siyasət çərçivəsi yarımçıq</span>
+        <span class="s7-tag s7-w">iSpring qismən istifadə edilir</span>
+        <span class="s7-tag s7-w">Jira prosesləri işləkdir</span>
+      </div>
+    </div>
+
+    <div class="s7-card" data-score="4">
+      <div class="s7-card-head">
+        <div class="s7-num">04</div>
+        <div class="s7-info">
+          <div class="s7-name">Ortaq Dəyərlər <span class="s7-en">Shared Values</span></div>
+          <div class="s7-type">Yumşaq Element · Mərkəz</div>
+        </div>
+        <div class="s7-score-wrap">
+          <div class="s7-score" style="color:var(--ok)">4</div>
+          <div class="s7-score-lbl">/5</div>
+        </div>
+      </div>
+      <div class="s7-bar-track"><div class="s7-bar-fill" style="width:0%;background:var(--ok)" data-w="80"></div></div>
+      <p class="s7-desc">Korporativ dəyərlər Pasha Holding ekosistemi ilə uyğunlaşdırılmış, ətraflı etik kodeks mövcuddur. Dinləmə sessiyaları, Leadership DNA təlimləri, team building tədbirləri dəyərlərin əməkdaşlara çatdırılmasında effektivdir. Holding mədəniyyətinin güclü olması bu elementi digərlərinə nisbətən üstün vəziyyətdə saxlayır.</p>
+      <div class="s7-findings">
+        <span class="s7-tag s7-ok">Etik kodeks ətraflı və əhatəli</span>
+        <span class="s7-tag s7-ok">Holding dəyərləri ilə inteqrasiya</span>
+        <span class="s7-tag s7-ok">Leadership DNA təlimləri</span>
+        <span class="s7-tag s7-w">Ekosistem səviyyəsində vahidləşdirmə tövsiyə olunur</span>
+      </div>
+    </div>
+
+    <div class="s7-card" data-score="3">
+      <div class="s7-card-head">
+        <div class="s7-num">05</div>
+        <div class="s7-info">
+          <div class="s7-name">Bacarıqlar <span class="s7-en">Skills</span></div>
+          <div class="s7-type">Yumşaq Element</div>
+        </div>
+        <div class="s7-score-wrap">
+          <div class="s7-score" style="color:var(--warn)">3</div>
+          <div class="s7-score-lbl">/5</div>
+        </div>
+      </div>
+      <div class="s7-bar-track"><div class="s7-bar-fill" style="width:0%;background:var(--warn)" data-w="60"></div></div>
+      <p class="s7-desc">HR komandası əməliyyat bacarıqları baxımından kifayət qədər kompetentdir — əmək münasibətləri, ƏMAS, sənədləşmə prosesləri qaydalara uyğun aparılır. Lakin strateji HR bacarıqları (data analitika, workforce planning, OD, L&D dizayn) zəifdir. HRIS sistemini idarə etmək üçün texniki bacarıq yoxdur, vendor asılılığı bununla əlaqəlidir.</p>
+      <div class="s7-findings">
+        <span class="s7-tag s7-ok">Əməliyyat HR bacarıqları güclüdür</span>
+        <span class="s7-tag s7-ok">ƏMAS və qanunvericiliyə uyğunluq</span>
+        <span class="s7-tag s7-f">HR analitika bacarığı yoxdur</span>
+        <span class="s7-tag s7-f">HRIS texniki idarəetmə bacarığı yoxdur</span>
+        <span class="s7-tag s7-w">L&D dizayn bacarığı məhduddur</span>
+      </div>
+    </div>
+
+    <div class="s7-card" data-score="3">
+      <div class="s7-card-head">
+        <div class="s7-num">06</div>
+        <div class="s7-info">
+          <div class="s7-name">Heyət <span class="s7-en">Staff</span></div>
+          <div class="s7-type">Yumşaq Element</div>
+        </div>
+        <div class="s7-score-wrap">
+          <div class="s7-score" style="color:var(--warn)">3</div>
+          <div class="s7-score-lbl">/5</div>
+        </div>
+      </div>
+      <div class="s7-bar-track"><div class="s7-bar-fill" style="width:0%;background:var(--warn)" data-w="60"></div></div>
+      <p class="s7-desc">HR to Employee Ratio qorunur, resurs baxımından adekvat heyət mövcuddur. Lakin performans idarəetməsi — KPI, PIP, IDP — tətbiq edilmədiyindən HR əməkdaşlarının özlərinin performansının idarə edilməsi strukturlaşdırılmamışdır. Succession planning yalnız C-Level üçün başlanmış, transformasiya ilə dayandırılmışdır. İşə qəbulda structured intervyu yoxdur.</p>
+      <div class="s7-findings">
+        <span class="s7-tag s7-ok">HR ratio adekvat</span>
+        <span class="s7-tag s7-ok">BP-lər əməliyyat proseslərini idarə edir</span>
+        <span class="s7-tag s7-f">KPI, PIP, IDP yoxdur</span>
+        <span class="s7-tag s7-w">Succession planning yarımçıq qalmışdır</span>
+        <span class="s7-tag s7-w">Structured işə qəbul prosesi yoxdur</span>
+      </div>
+    </div>
+
+    <div class="s7-card" data-score="3">
+      <div class="s7-card-head">
+        <div class="s7-num">07</div>
+        <div class="s7-info">
+          <div class="s7-name">İdarəetmə Üslubu <span class="s7-en">Style</span></div>
+          <div class="s7-type">Yumşaq Element</div>
+        </div>
+        <div class="s7-score-wrap">
+          <div class="s7-score" style="color:var(--warn)">3</div>
+          <div class="s7-score-lbl">/5</div>
+        </div>
+      </div>
+      <div class="s7-bar-track"><div class="s7-bar-fill" style="width:0%;background:var(--warn)" data-w="60"></div></div>
+      <p class="s7-desc">İşçi məşğulluğu fəaliyyəti (WTW surveylər, pulse surveylər, team building, korporativ tədbirlər) aktiv şəkildə aparılır — bu HR-ın işçi yönümlü idarəetmə üslubunu əks etdirir. Lakin qərar qəbulunda yazılı prosedur əvəzinə şifahi razılaşmalara əsaslanmaq idarəetmə üslubunun ardıcıllığını azaldır. Non-Agile hissədə feedback mədəniyyəti zəifdir.</p>
+      <div class="s7-findings">
+        <span class="s7-tag s7-ok">İşçi məşğulluğu fəaliyyəti aktiv</span>
+        <span class="s7-tag s7-ok">WTW + pulse survey müsbət təcrübə</span>
+        <span class="s7-tag s7-w">Qərarvermə çox şifahi əsasda</span>
+        <span class="s7-tag s7-w">Non-Agile feedback mədəniyyəti zəif</span>
+        <span class="s7-tag s7-f">Recognition sistemi yoxdur</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Uyğunluq matrisi -->
+  <div class="s7-alignment fade-up">
+    <div class="s7-align-title">7S Uyğunluq Matrisi — Elementlər Arası Zəif Əlaqələr</div>
+    <div class="s7-align-grid">
+      <div class="s7-align-item s7-align-critical">
+        <div class="s7-align-pair">Strategiya ↔ Sistem</div>
+        <div class="s7-align-desc">HR strategiyası olmadan sistem investisiyalarının istiqaməti müəyyən edilmir. HRIS tətbiqi strateji məqsədsiz aparılıb.</div>
+      </div>
+      <div class="s7-align-item s7-align-critical">
+        <div class="s7-align-pair">Sistem ↔ Bacarıqlar</div>
+        <div class="s7-align-desc">HRIS-i idarə etmək üçün texniki bacarıq yoxdur. Sistem vendor tərəfindən idarə olunur — bu asılılıq yaradır.</div>
+      </div>
+      <div class="s7-align-item s7-align-critical">
+        <div class="s7-align-pair">Strategiya ↔ Heyət</div>
+        <div class="s7-align-desc">Workforce planning, succession, IDP olmadan heyətin strateji məqsədlərə uyğun inkişafı mümkün deyil.</div>
+      </div>
+      <div class="s7-align-item s7-align-warn">
+        <div class="s7-align-pair">Struktur ↔ Sistem</div>
+        <div class="s7-align-desc">RACI matrisi olmadan sistemlərdə kimin nəyə cavabdeh olduğu aydın deyil. Rol separasiyası HRIS-də də tamamlanmayıb.</div>
+      </div>
+      <div class="s7-align-item s7-align-warn">
+        <div class="s7-align-pair">Dəyərlər ↔ Sistem</div>
+        <div class="s7-align-desc">Güclü korporativ dəyərlər mövcuddur, lakin bunları dəstəkləyən HR sistemi (DEI, şikayət mexanizmi, recognition) yoxdur.</div>
+      </div>
+      <div class="s7-align-item s7-align-ok">
+        <div class="s7-align-pair">Dəyərlər ↔ Üslub</div>
+        <div class="s7-align-desc">Korporativ dəyərlər idarəetmə üslubu ilə əsasən uyğundur. İşçi yönümlü yanaşma dəyərləri əks etdirir.</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+  
+  <hr class="div">
+
+<!-- ===== MATURITY MODEL ===== -->
+<section id="maturity">
+  <div class="eyebrow">Strateji Analiz</div>
+  <div class="sec-title">HR Yetkinlik Modeli</div>
+  <div class="hl-box" style="margin-bottom:44px;">
+    <p>HR Yetkinlik Modeli hər bir funksional sahənin cari yetkinlik səviyyəsini 5 pillə üzrə qiymətləndirir: <strong>Ad-hoc → Təkrarlanan → Müəyyən edilmiş → İdarə olunan → Optimallaşdırılmış.</strong> Audit tapıntılarına əsasən PashaPay HR departamentinin əksər sahələri 1–2-ci pillədə, bir neçə sahə isə 3-cü pillədə yerləşir. Heç bir sahə 4–5-ci pilləyə çatmamışdır.</p>
+  </div>
+
+  <!-- Maturity scale legend -->
+  <div class="mat-legend fade-up">
+    <div class="mat-leg"><div class="mat-leg-n" style="background:var(--fail)">1</div><div class="mat-leg-l">Ad-hoc<span>Plansız, reaktiv</span></div></div>
+    <div class="mat-leg"><div class="mat-leg-n" style="background:var(--orange)">2</div><div class="mat-leg-l">Təkrarlanan<span>Proses var, sənəd yox</span></div></div>
+    <div class="mat-leg"><div class="mat-leg-n" style="background:var(--amber)">3</div><div class="mat-leg-l">Müəyyən edilmiş<span>Yazılı, standartlaşmış</span></div></div>
+    <div class="mat-leg"><div class="mat-leg-n" style="background:var(--ok)">4</div><div class="mat-leg-l">İdarə olunan<span>Ölçülür, izlənilir</span></div></div>
+    <div class="mat-leg"><div class="mat-leg-n" style="background:#00b4d8">5</div><div class="mat-leg-l">Optimallaşdırılmış<span>Davamlı təkmilləşmə</span></div></div>
+  </div>
+
+  <!-- Maturity bars -->
+  <div class="mat-grid fade-up">
+
+    <div class="mat-row">
+      <div class="mat-label">
+        <div class="mat-name">HR Governance & Siyasətlər</div>
+        <div class="mat-note">Siyasətlər qismən mövcuddur, 10+ boşluq var</div>
+      </div>
+      <div class="mat-track-wrap">
+        <div class="mat-track">
+          <div class="mat-fill" style="width:0%" data-w="30" data-color="#FF5200"></div>
+        </div>
+        <div class="mat-pills">
+          <div class="mat-pill mat-pill-act" style="left:20%"><span>1.5</span></div>
+        </div>
+        <div class="mat-scale">
+          <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+        </div>
+      </div>
+      <div class="mat-badge" style="background:rgba(255,82,0,.1);color:var(--orange);border:1px solid rgba(255,82,0,.25);">1.5</div>
+    </div>
+
+    <div class="mat-row">
+      <div class="mat-label">
+        <div class="mat-name">İşə Qəbul & Adaptasiya</div>
+        <div class="mat-note">Proses mövcuddur, strukturlaşdırılmamışdır</div>
+      </div>
+      <div class="mat-track-wrap">
+        <div class="mat-track">
+          <div class="mat-fill" style="width:0%" data-w="45" data-color="#FF9500"></div>
+        </div>
+      </div>
+      <div class="mat-badge" style="background:rgba(255,149,0,.1);color:var(--warn);border:1px solid rgba(255,149,0,.25);">2</div>
+    </div>
+
+    <div class="mat-row">
+      <div class="mat-label">
+        <div class="mat-name">Əmək Münasibətlərinin İdarəsi</div>
+        <div class="mat-note">Əməliyyat proseslər qaydalara uyğun aparılır</div>
+      </div>
+      <div class="mat-track-wrap">
+        <div class="mat-track">
+          <div class="mat-fill" style="width:0%" data-w="62" data-color="#FFB800"></div>
+        </div>
+      </div>
+      <div class="mat-badge" style="background:rgba(255,184,0,.1);color:#FFB800;border:1px solid rgba(255,184,0,.25);">2.8</div>
+    </div>
+
+    <div class="mat-row">
+      <div class="mat-label">
+        <div class="mat-name">Məzuniyyətlərin İdarəsi</div>
+        <div class="mat-note">Uçot mövcuddur, sistem uyğunsuzluqları var</div>
+      </div>
+      <div class="mat-track-wrap">
+        <div class="mat-track">
+          <div class="mat-fill" style="width:0%" data-w="55" data-color="#FFB800"></div>
+        </div>
+      </div>
+      <div class="mat-badge" style="background:rgba(255,184,0,.1);color:#FFB800;border:1px solid rgba(255,184,0,.25);">2.5</div>
+    </div>
+
+    <div class="mat-row">
+      <div class="mat-label">
+        <div class="mat-name">Əmək Haqqı İdarəetməsi</div>
+        <div class="mat-note">Hesablamalar aparılır, sistem istifadə edilmir</div>
+      </div>
+      <div class="mat-track-wrap">
+        <div class="mat-track">
+          <div class="mat-fill" style="width:0%" data-w="45" data-color="#FF9500"></div>
+        </div>
+      </div>
+      <div class="mat-badge" style="background:rgba(255,149,0,.1);color:var(--warn);border:1px solid rgba(255,149,0,.25);">2</div>
+    </div>
+
+    <div class="mat-row">
+      <div class="mat-label">
+        <div class="mat-name">Müavinətlər & Mükafatlar</div>
+        <div class="mat-note">Sosial paket güclüdür, PM strukturlaşmayıb</div>
+      </div>
+      <div class="mat-track-wrap">
+        <div class="mat-track">
+          <div class="mat-fill" style="width:0%" data-w="55" data-color="#FFB800"></div>
+        </div>
+      </div>
+      <div class="mat-badge" style="background:rgba(255,184,0,.1);color:#FFB800;border:1px solid rgba(255,184,0,.25);">2.5</div>
+    </div>
+
+    <div class="mat-row">
+      <div class="mat-label">
+        <div class="mat-name">Təlim & İnkişaf (L&D)</div>
+        <div class="mat-note">Reaktiv yanaşma, illik plan və TNA yoxdur</div>
+      </div>
+      <div class="mat-track-wrap">
+        <div class="mat-track">
+          <div class="mat-fill" style="width:0%" data-w="30" data-color="#FF5200"></div>
+        </div>
+      </div>
+      <div class="mat-badge" style="background:rgba(255,82,0,.1);color:var(--orange);border:1px solid rgba(255,82,0,.25);">1.5</div>
+    </div>
+
+    <div class="mat-row">
+      <div class="mat-label">
+        <div class="mat-name">HRIS Sistemi</div>
+        <div class="mat-note">Sistem mövcuddur, funksional deyil</div>
+      </div>
+      <div class="mat-track-wrap">
+        <div class="mat-track">
+          <div class="mat-fill" style="width:0%" data-w="20" data-color="#E8001D"></div>
+        </div>
+      </div>
+      <div class="mat-badge" style="background:rgba(232,0,29,.1);color:var(--fail);border:1px solid rgba(232,0,29,.25);">1</div>
+    </div>
+
+    <div class="mat-row">
+      <div class="mat-label">
+        <div class="mat-name">HR Analitika & Hesabatlar</div>
+        <div class="mat-note">Data var, sistem üzərindən çəkilmir</div>
+      </div>
+      <div class="mat-track-wrap">
+        <div class="mat-track">
+          <div class="mat-fill" style="width:0%" data-w="38" data-color="#FF5200"></div>
+        </div>
+      </div>
+      <div class="mat-badge" style="background:rgba(255,82,0,.1);color:var(--orange);border:1px solid rgba(255,82,0,.25);">1.8</div>
+    </div>
+
+    <div class="mat-row">
+      <div class="mat-label">
+        <div class="mat-name">SƏTƏM (Əmək Mühafizəsi)</div>
+        <div class="mat-note">Əsas tələblər qarşılanır, siyasət yoxdur</div>
+      </div>
+      <div class="mat-track-wrap">
+        <div class="mat-track">
+          <div class="mat-fill" style="width:0%" data-w="62" data-color="#FFB800"></div>
+        </div>
+      </div>
+      <div class="mat-badge" style="background:rgba(255,184,0,.1);color:#FFB800;border:1px solid rgba(255,184,0,.25);">2.8</div>
+    </div>
+
+    <div class="mat-row">
+      <div class="mat-label">
+        <div class="mat-name">Employee Engagement</div>
+        <div class="mat-note">Surveylər, team building aktiv, sistem yoxdur</div>
+      </div>
+      <div class="mat-track-wrap">
+        <div class="mat-track">
+          <div class="mat-fill" style="width:0%" data-w="62" data-color="#FFB800"></div>
+        </div>
+      </div>
+      <div class="mat-badge" style="background:rgba(255,184,0,.1);color:#FFB800;border:1px solid rgba(255,184,0,.25);">2.8</div>
+    </div>
+
+    <div class="mat-row">
+      <div class="mat-label">
+        <div class="mat-name">DEI (Müxtəliflik & İnklüzivlik)</div>
+        <div class="mat-note">7 siyasət/mexanizmdən heç biri mövcud deyil</div>
+      </div>
+      <div class="mat-track-wrap">
+        <div class="mat-track">
+          <div class="mat-fill" style="width:0%" data-w="10" data-color="#E8001D"></div>
+        </div>
+      </div>
+      <div class="mat-badge" style="background:rgba(232,0,29,.1);color:var(--fail);border:1px solid rgba(232,0,29,.25);">1</div>
+    </div>
+
+    <div class="mat-row">
+      <div class="mat-label">
+        <div class="mat-name">Sənəd İdarəetməsi</div>
+        <div class="mat-note">Fiziki arxiv var, elektron dövriyyə yoxdur</div>
+      </div>
+      <div class="mat-track-wrap">
+        <div class="mat-track">
+          <div class="mat-fill" style="width:0%" data-w="38" data-color="#FF5200"></div>
+        </div>
+      </div>
+      <div class="mat-badge" style="background:rgba(255,82,0,.1);color:var(--orange);border:1px solid rgba(255,82,0,.25);">1.8</div>
+    </div>
+
+    <div class="mat-row">
+      <div class="mat-label">
+        <div class="mat-name">Performans & Karyera İnkişafı</div>
+        <div class="mat-note">360 mövcuddur, objective-based PM yoxdur</div>
+      </div>
+      <div class="mat-track-wrap">
+        <div class="mat-track">
+          <div class="mat-fill" style="width:0%" data-w="45" data-color="#FF9500"></div>
+        </div>
+      </div>
+      <div class="mat-badge" style="background:rgba(255,149,0,.1);color:var(--warn);border:1px solid rgba(255,149,0,.25);">2</div>
+    </div>
+
+  </div>
+
+  <!-- Ümumi yetkinlik balı -->
+  <div class="mat-overall fade-up">
+    <div class="mat-ov-left">
+      <div class="mat-ov-label">Ortalama Yetkinlik Səviyyəsi</div>
+      <div class="mat-ov-score">2.1 <span>/5</span></div>
+      <div class="mat-ov-tier">Təkrarlanan Mərhələ</div>
+      <div class="mat-ov-desc">HR departamenti prosesləri mövcuddur və fəaliyyət göstərir, lakin əksəriyyəti sənədləşdirilməmiş, ölçülməmiş və sistemsizdir. Fərdi bacarıq və şifahi razılaşmalar yazılı prosedurların yerini tutur.</div>
+    </div>
+    <div class="mat-ov-right">
+      <div class="mat-ov-next-label">Hədəf Səviyyə (12–18 ay)</div>
+      <div class="mat-ov-next-score">3.5 <span>/5</span></div>
+      <div class="mat-ov-next-tier">Müəyyən edilmiş → İdarə olunan</div>
+      <div class="mat-ov-desc">Bütün əsas proseslər yazılı, standartlaşdırılmış və sistem üzərindən idarə olunan vəziyyətə gətirilməlidir. Əsas metriklər ölçülməyə başlanmalıdır.</div>
+    </div>
+  </div>
+
+</section>
+  
+  <hr class="div">
+
+<!-- ===== ROOT CAUSE ANALYSIS ===== -->
+<section id="rootcause">
+  <div class="eyebrow">Strateji Analiz</div>
+  <div class="sec-title">Kök Səbəb Analizi</div>
+  <div class="hl-box" style="margin-bottom:44px;">
+    <p>Audit tapıntılarının əksəriyyəti bir-birindən müstəqil boşluqlar deyil — <strong>3 əsas kök səbəbin</strong> törəməsidir. Bu səbəblər aradan qaldırılmadan ayrı-ayrı tapıntıların həlli uzunmüddətli effekt verməyəcəkdir.</p>
+  </div>
+
+  <div class="rca-tree fade-up">
+
+    <!-- KÖK SƏBƏBİ 1 -->
+    <div class="rca-root">
+      <div class="rca-root-badge" style="background:rgba(232,0,29,.1);border-color:rgba(232,0,29,.3);color:var(--fail);">Kök Səbəb 01</div>
+      <div class="rca-root-title">HR Departamentinin Strateji Rolu Yoxdur</div>
+      <div class="rca-root-desc">HR reaktiv, əməliyyat funksiyası kimi konumlandırılmışdır. Yazılı strategiya, illik plan, risk reyestri, workforce planning yoxdur. Bütün qərarlar fərdi mühakimə əsasında verilir.</div>
+      <div class="rca-branches">
+        <div class="rca-branch">
+          <div class="rca-branch-icon">↳</div>
+          <div class="rca-branch-body">
+            <div class="rca-branch-title">Siyasət çərçivəsinin yarımçıqlığı</div>
+            <div class="rca-branch-desc">İşe qəbul, intizam, şikayət, DEI, GDPR, offboarding — 10+ əsas prosedur yazılı formada mövcud deyil. Proses bilgisi fərddədir, şirkətdə deyil.</div>
+            <div class="rca-effects">
+              <span class="rca-eff rca-f">Hüquqi risk</span>
+              <span class="rca-eff rca-f">Audit müdafiəsi yoxdur</span>
+              <span class="rca-eff rca-f">Ardıcıllıq pozulur</span>
+            </div>
+          </div>
+        </div>
+        <div class="rca-branch">
+          <div class="rca-branch-icon">↳</div>
+          <div class="rca-branch-body">
+            <div class="rca-branch-title">HR Risk Reyestrinin olmaması</div>
+            <div class="rca-branch-desc">Tapıntılar yalnız xarici audit zamanı üzə çıxır. Daxili monitorinq, erkən xəbərdarlıq mexanizmi mövcud deyildir. Risklər yığılır.</div>
+            <div class="rca-effects">
+              <span class="rca-eff rca-f">Risklər gec aşkarlanır</span>
+              <span class="rca-eff rca-w">Dəyişikliklər reaktiv qalır</span>
+            </div>
+          </div>
+        </div>
+        <div class="rca-branch">
+          <div class="rca-branch-icon">↳</div>
+          <div class="rca-branch-body">
+            <div class="rca-branch-title">DEI, performans, L&D sahələrinin struktursuzluğu</div>
+            <div class="rca-branch-desc">Strateji prioritet olmadığından bu sahələr reaktiv, qismən, ya da tamamilə boş qalır. KPI, IDP, mentorluq, TNA heç biri planlaşdırma çərçivəsindən keçmir.</div>
+            <div class="rca-effects">
+              <span class="rca-eff rca-f">Talent retention riski</span>
+              <span class="rca-eff rca-f">İnkişaf imkanlarının itirilməsi</span>
+              <span class="rca-eff rca-w">Beynəlxalq standartlara uyğunsuzluq</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rca-connector"></div>
+
+    <!-- KÖK SƏBƏBİ 2 -->
+    <div class="rca-root">
+      <div class="rca-root-badge" style="background:rgba(255,82,0,.1);border-color:rgba(255,82,0,.3);color:var(--orange);">Kök Səbəb 02</div>
+      <div class="rca-root-title">HRIS Tətbiqi Strateji Planlaşdırma Olmadan Həyata Keçirilib</div>
+      <div class="rca-root-desc">1C sistemi Azərbaycan tələbləri, daxili proseslər və inteqrasiya ehtiyacları tam müəyyən edilmədən seçilib və tətbiq edilib. Vendor SLA-sız müqavilə ilə işləyir, test mühiti qurulmayıb.</div>
+      <div class="rca-branches">
+        <div class="rca-branch">
+          <div class="rca-branch-icon">↳</div>
+          <div class="rca-branch-body">
+            <div class="rca-branch-title">Payroll və məzuniyyətin sistemdən çıxması</div>
+            <div class="rca-branch-desc">Sistemə etibar olmadığından əmək haqqı Excel-ə, məzuniyyət ayrı bir sisteme köçürülüb. İki ayrı məlumat mənbəyi uyğunsuzluq və xəta riskini artırır.</div>
+            <div class="rca-effects">
+              <span class="rca-eff rca-f">Excel asılılığı</span>
+              <span class="rca-eff rca-f">Məlumat bütövlüyü yoxdur</span>
+              <span class="rca-eff rca-w">Hesablama xətası riski</span>
+            </div>
+          </div>
+        </div>
+        <div class="rca-branch">
+          <div class="rca-branch-icon">↳</div>
+          <div class="rca-branch-body">
+            <div class="rca-branch-title">Kritik məlumat təhlükəsizliyi boşluqları</div>
+            <div class="rca-branch-desc">Test mühiti yoxdur — vendor prodaksiyada işləyir. Maskalanma, şifrələmə, 2FA, audit log tətbiq edilməyib. Əməkdaşların şəxsi məlumatları qorumasızdır.</div>
+            <div class="rca-effects">
+              <span class="rca-eff rca-f">GDPR pozuntusu</span>
+              <span class="rca-eff rca-f">Vendor məlumat riski</span>
+              <span class="rca-eff rca-f">Sanksiya ehtimalı</span>
+            </div>
+          </div>
+        </div>
+        <div class="rca-branch">
+          <div class="rca-branch-icon">↳</div>
+          <div class="rca-branch-body">
+            <div class="rca-branch-title">6 kritik inteqrasiyanın qurulmaması</div>
+            <div class="rca-branch-desc">ƏMAS, bank, 1C ERP, DSMF, iSpring, turniket — heç biri avtomatik əlaqəli deyil. Bütün məlumat transferi manual aparılır, insan xətası qaçınılmazdır.</div>
+            <div class="rca-effects">
+              <span class="rca-eff rca-f">Manual iş yükü</span>
+              <span class="rca-eff rca-w">Gecikmə riski</span>
+              <span class="rca-eff rca-w">Dövlət hesabat risikləri</span>
+            </div>
+          </div>
+        </div>
+        <div class="rca-branch">
+          <div class="rca-branch-icon">↳</div>
+          <div class="rca-branch-body">
+            <div class="rca-branch-title">Vendor asılılığı və SLA yoxluğu</div>
+            <div class="rca-branch-desc">Rol idarəetməsi, konfiqurasiya, şablon yaratma — hamısı vendor tərəfindən aparılır. Daxili texniki bacarıq inkişaf etdirilməyib. Müqavilədə SLA, məsuliyyət, cavabdehlik tənzimlənməyib.</div>
+            <div class="rca-effects">
+              <span class="rca-eff rca-f">Sistem dəyişikliyində risk</span>
+              <span class="rca-eff rca-w">Daxili bacarıq inkişaf etmir</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rca-connector"></div>
+
+    <!-- KÖK SƏBƏBİ 3 -->
+    <div class="rca-root">
+      <div class="rca-root-badge" style="background:rgba(255,149,0,.1);border-color:rgba(255,149,0,.3);color:var(--warn);">Kök Səbəb 03</div>
+      <div class="rca-root-title">Azərbaycan Əmək Məcəlləsinə Uyğunluq Sistematik İzlənilmir</div>
+      <div class="rca-root-desc">ƏM tələbləri məlum olsa da bunların sistem səviyyəsində tətbiqi, avtomatik hesablama və monitorinq mexanizmi qurulmayıb. Uyğunluq fərdi bilik və diqqətə əsaslanır.</div>
+      <div class="rca-branches">
+        <div class="rca-branch">
+          <div class="rca-branch-icon">↳</div>
+          <div class="rca-branch-body">
+            <div class="rca-branch-title">Məzuniyyət ödənişi, 14 gün tələbi, gecə əmsalı pozuntuları</div>
+            <div class="rca-branch-desc">Məzuniyyət ödənişi 3 gün öncə aparılmır. 14 günlük fasiləsiz məzuniyyət tələbi izlənilmir. ƏM m.163 üzrə gecə saatı əmsalı avtomatik hesablanmır. Bu üç sahə birlikdə əmək mübahisəsi riskini əhəmiyyətli dərəcədə artırır.</div>
+            <div class="rca-effects">
+              <span class="rca-eff rca-f">Əmək mübahisəsi riski</span>
+              <span class="rca-eff rca-f">ƏM pozuntusu</span>
+              <span class="rca-eff rca-w">Əməkdaş narazılığı</span>
+            </div>
+          </div>
+        </div>
+        <div class="rca-branch">
+          <div class="rca-branch-icon">↳</div>
+          <div class="rca-branch-body">
+            <div class="rca-branch-title">Davamiyyət uçotunun aparılmaması</div>
+            <div class="rca-branch-desc">Faktiki iş saatları, gec gəlmə, erkən çıxma qeydiyyatı HRIS üzərindən aparılmır. Bu həm əmək haqqı hesablamasını qeyri-dəqiq edir, həm də intizam prosesinin sənədli əsasını zəiflədir.</div>
+            <div class="rca-effects">
+              <span class="rca-eff rca-f">Payroll dəqiqlik riski</span>
+              <span class="rca-eff rca-w">İntizam prosesi zəifdir</span>
+              <span class="rca-eff rca-w">Absenteeism izlənilmir</span>
+            </div>
+          </div>
+        </div>
+        <div class="rca-branch">
+          <div class="rca-branch-icon">↳</div>
+          <div class="rca-branch-body">
+            <div class="rca-branch-title">Əlillik kvotası — qanuna zidd tətbiq</div>
+            <div class="rca-branch-desc">Kvota tələbini yerinə yetirmək üçün 2 nəfər işə götürülüb, lakin faktiki iş öhdəliyi verilməyib. Bu həm ƏM-ə, həm şirkətin daxili qaydalarına, həm də etik standartlara ziddir.</div>
+            <div class="rca-effects">
+              <span class="rca-eff rca-f">Hüquqi risk</span>
+              <span class="rca-eff rca-f">Etik pozuntu</span>
+              <span class="rca-eff rca-f">DEI ziddiyyəti</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Xülasə cədvəli -->
+  <div class="rca-summary fade-up">
+    <div class="eyebrow" style="margin-bottom:16px;">Kök Səbəb → Təsir Xəritəsi</div>
+    <table style="width:100%;border-collapse:collapse;font-size:12px;">
+      <thead>
+        <tr>
+          <th style="text-align:left;padding:10px 14px;border:1px solid var(--border2);background:var(--bg3);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);font-weight:800;">Kök Səbəb</th>
+          <th style="text-align:center;padding:10px 14px;border:1px solid var(--border2);background:var(--bg3);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);font-weight:800;">Törəmə Tapıntı Sayı</th>
+          <th style="text-align:center;padding:10px 14px;border:1px solid var(--border2);background:var(--bg3);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);font-weight:800;">Risk Səviyyəsi</th>
+          <th style="text-align:left;padding:10px 14px;border:1px solid var(--border2);background:var(--bg3);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);font-weight:800;">Prioritet Həll</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding:10px 14px;border:1px solid var(--border);font-weight:700;">Strateji rolun olmaması</td>
+          <td style="padding:10px 14px;border:1px solid var(--border);text-align:center;font-family:var(--mono);font-weight:700;">28+</td>
+          <td style="padding:10px 14px;border:1px solid var(--border);text-align:center;"><span style="background:rgba(232,0,29,.1);color:var(--fail);border:1px solid rgba(232,0,29,.25);padding:3px 10px;font-size:10px;font-weight:800;">Kritik</span></td>
+          <td style="padding:10px 14px;border:1px solid var(--border);color:var(--text2);">HR Strategiya Sənədi + Siyasət Çərçivəsi</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;border:1px solid var(--border);font-weight:700;">HRIS plansız tətbiq</td>
+          <td style="padding:10px 14px;border:1px solid var(--border);text-align:center;font-family:var(--mono);font-weight:700;">35+</td>
+          <td style="padding:10px 14px;border:1px solid var(--border);text-align:center;"><span style="background:rgba(232,0,29,.1);color:var(--fail);border:1px solid rgba(232,0,29,.25);padding:3px 10px;font-size:10px;font-weight:800;">Kritik</span></td>
+          <td style="padding:10px 14px;border:1px solid var(--border);color:var(--text2);">HRIS Lokalizasiya + Təhlükəsizlik + İnteqrasiyalar</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;border:1px solid var(--border);font-weight:700;">ƏM uyğunluğu izlənilmir</td>
+          <td style="padding:10px 14px;border:1px solid var(--border);text-align:center;font-family:var(--mono);font-weight:700;">12+</td>
+          <td style="padding:10px 14px;border:1px solid var(--border);text-align:center;"><span style="background:rgba(255,82,0,.1);color:var(--orange);border:1px solid rgba(255,82,0,.25);padding:3px 10px;font-size:10px;font-weight:800;">Yüksək</span></td>
+          <td style="padding:10px 14px;border:1px solid var(--border);color:var(--text2);">Uyğunluq Monitorinq Sistemi + HRIS Lokalizasiya</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</section>
+  
+  <hr class="div">
+
+<hr class="div">
+
+<!-- ===== RISK HEAT MAP ===== -->
+<section id="heatmap">
+  <div class="eyebrow">Strateji Analiz</div>
+  <div class="sec-title">Risk Heat Map</div>
+  <div class="hl-box" style="margin-bottom:44px;">
+    <p>Audit tapıntıları <strong>Ehtimal × Təsir</strong> matrisi üzərində yerləşdirilib. Yuxarı sağ kvadrant — yüksək ehtimal, yüksək təsir — dərhal müdaxilə tələb edən sahələri göstərir.</p>
+  </div>
+
+  <div class="hm-wrap fade-up">
+    <div class="hm-yaxis"><span>← Aşağı Ehtimal</span><span>Yüksək Ehtimal →</span></div>
+    <div class="hm-matrix-wrap">
+      <div class="hm-xaxis"><span>← Aşağı Təsir</span><span>Yüksək Təsir →</span></div>
+      <div class="hm-matrix">
+
+        <div class="hm-corner"></div>
+        <div class="hm-col-head">Aşağı Təsir</div>
+        <div class="hm-col-head">Orta Təsir</div>
+        <div class="hm-col-head">Yüksək Təsir</div>
+        <div class="hm-col-head">Kritik Təsir</div>
+
+        <div class="hm-row-head">Demək olar ki Müəyyən</div>
+        <div class="hm-cell hm-medium">
+          <span class="hm-dot">Davamiyyət<br>İzlənilməməsi</span>
+        </div>
+        <div class="hm-cell hm-high">
+          <span class="hm-dot">Məzuniyyət<br>Balans Xətaları</span>
+          <span class="hm-dot">Manual Dövlət<br>Hesabatları</span>
+        </div>
+        <div class="hm-cell hm-critical">
+          <span class="hm-dot">Excel Payroll<br>Asılılığı</span>
+          <span class="hm-dot">HRIS-Məzuniyyət<br>İnteqrasiya Yoxluğu</span>
+        </div>
+        <div class="hm-cell hm-critical">
+          <span class="hm-dot">Vendor Prod.<br>Girişi</span>
+          <span class="hm-dot">Məlumat<br>Maskalanmama</span>
+        </div>
+
+        <div class="hm-row-head">Çox Güman</div>
+        <div class="hm-cell hm-low">
+          <span class="hm-dot">Sənəd Saxlama<br>Müddətsizliyi</span>
+        </div>
+        <div class="hm-cell hm-medium">
+          <span class="hm-dot">Strukturlaşmamış<br>Müsahibə</span>
+          <span class="hm-dot">Onboarding<br>Checklist Yoxdur</span>
+        </div>
+        <div class="hm-cell hm-high">
+          <span class="hm-dot">Gecə Əmsalı<br>Hesablanmır</span>
+          <span class="hm-dot">14 Gün Fasiləsiz<br>Məzuniyyət</span>
+        </div>
+        <div class="hm-cell hm-critical">
+          <span class="hm-dot">Siyasət<br>Çərçivəsi Boşluğu</span>
+          <span class="hm-dot">GDPR<br>Uyğunsuzluğu</span>
+        </div>
+
+        <div class="hm-row-head">Mümkün</div>
+        <div class="hm-cell hm-low">
+          <span class="hm-dot">Korporativ<br>Brending Yoxdur</span>
+        </div>
+        <div class="hm-cell hm-low">
+          <span class="hm-dot">Buddy Sistemi<br>Yoxdur</span>
+          <span class="hm-dot">Exit Analiz<br>Yoxdur</span>
+        </div>
+        <div class="hm-cell hm-medium">
+          <span class="hm-dot">KPI Sistemi<br>Yoxdur</span>
+          <span class="hm-dot">IDP Yoxdur</span>
+          <span class="hm-dot">Succession<br>Planning Yarımçıq</span>
+        </div>
+        <div class="hm-cell hm-high">
+          <span class="hm-dot">DEI Siyasəti<br>Tam Boş</span>
+          <span class="hm-dot">Əlillik Kvotası<br>Pozuntusu</span>
+          <span class="hm-dot">ƏMAS<br>İnteqrasiyası Yox</span>
+        </div>
+
+        <div class="hm-row-head">Az Ehtimal</div>
+        <div class="hm-cell hm-low">
+          <span class="hm-dot">Mobil<br>Uyğunsuzluq</span>
+        </div>
+        <div class="hm-cell hm-low">
+          <span class="hm-dot">Org Chart<br>Vizuallığı Yox</span>
+          <span class="hm-dot">Sənəd Versiya<br>İdarəsi Yox</span>
+        </div>
+        <div class="hm-cell hm-medium">
+          <span class="hm-dot">Bank İnteqrasiyası<br>Yoxdur</span>
+          <span class="hm-dot">İllik Təlim<br>Planı Yoxdur</span>
+        </div>
+        <div class="hm-cell hm-medium">
+          <span class="hm-dot">PIP Yoxdur</span>
+          <span class="hm-dot">Recognition<br>Proqramı Yox</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="hm-legend fade-up">
+    <div class="hm-leg-item">
+      <div class="hm-leg-color" style="background:#E8001D"></div>
+      <div class="hm-leg-text"><strong>Kritik</strong> — Dərhal müdaxilə</div>
+    </div>
+    <div class="hm-leg-item">
+      <div class="hm-leg-color" style="background:#FF5200"></div>
+      <div class="hm-leg-text"><strong>Yüksək</strong> — Qısa müddətdə həll</div>
+    </div>
+    <div class="hm-leg-item">
+      <div class="hm-leg-color" style="background:#FF9500"></div>
+      <div class="hm-leg-text"><strong>Orta</strong> — Planlaşdırılmış həll</div>
+    </div>
+    <div class="hm-leg-item">
+      <div class="hm-leg-color" style="background:#FFD700"></div>
+      <div class="hm-leg-text"><strong>Aşağı</strong> — Uzunmüddətli yol xəritəsi</div>
+    </div>
+  </div>
+
+  <div class="hm-count-strip fade-up">
+    <div class="hm-count hm-count-c">
+      <div class="hm-count-n">8</div>
+      <div class="hm-count-l">Kritik Risk</div>
+      <div class="hm-count-d">Dərhal müdaxilə</div>
+    </div>
+    <div class="hm-count hm-count-h">
+      <div class="hm-count-n">9</div>
+      <div class="hm-count-l">Yüksək Risk</div>
+      <div class="hm-count-d">Qısa müddətdə həll</div>
+    </div>
+    <div class="hm-count hm-count-m">
+      <div class="hm-count-n">10</div>
+      <div class="hm-count-l">Orta Risk</div>
+      <div class="hm-count-d">Planlaşdırılmış həll</div>
+    </div>
+    <div class="hm-count hm-count-l2">
+      <div class="hm-count-n">7</div>
+      <div class="hm-count-l">Aşağı Risk</div>
+      <div class="hm-count-d">Uzunmüddətli plan</div>
+    </div>
+  </div>
+
+</section>
 
 <!-- PRIORITY MATRIX -->
 <section id="governance">
@@ -376,7 +1500,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:48px 80p
         <span class="mtag">ADA Təhsil Dəstəyi Genişlənməsi</span>
       </div>
     </div>
-    <div style="font-size:9px;letter-spacing:2px;color:var(--text3);text-transform:uppercase;margin-top:8px;font-weight:800">← İNDİ ↔ GƏLƏCƏKdə →</div>
+    <div style="font-size:12px;letter-spacing:2px;color:var(--text3);text-transform:uppercase;margin-top:8px;font-weight:800">← İNDİ ↔ GƏLƏCƏKdə →</div>
   </div>
 </section>
 
@@ -407,9 +1531,9 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:48px 80p
 <footer>
   <div>
     <div class="footer-logo">PASHAPAY</div>
-    <div style="font-size:11px;color:var(--text3);margin-top:8px;font-weight:600;letter-spacing:1px;">HR DEPARTAMENTİ KOMPLEKSİ AUDİT · 2025</div>
+    <div style="font-size:11px;color:var(--text3);margin-top:8px;font-weight:600;letter-spacing:1px;">HR DEPARTAMENTİ KOMPLEKS DİAQNOZTİKA · 2026</div>
   </div>
-  <div class="footer-info">Hazırladı: Daxili Audit Komandası<br>Status: Məxfi — Yalnız Rəhbərlik Üçün<br>© 2025 PashaPay MMC</div>
+  <div class="footer-info">Hazırladı: Nizami Tahirov<br>Status: Məxfi — Yalnız Rəhbərlik Üçün<br>© 2026 Birbank</div>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
@@ -420,7 +1544,7 @@ function toggleTheme(){
   h.setAttribute('data-theme',d?'light':'dark');
   document.getElementById('ticon').textContent=d?'☀️':'🌙';
   document.getElementById('tlbl').textContent=d?'Light':'Dark';
-  drawSpeedometer(55);buildCharts();
+  drawSpeedometer(42);buildCharts();
 }
 
 /* ===== DATA ===== */
@@ -878,7 +2002,7 @@ function drawSpeedometer(val){
 
 let spd=0;
 function animSpd(){
-  if(spd<55){
+  if(spd<42){
     spd=Math.min(spd+0.6,55);
     drawSpeedometer(spd);
     document.getElementById('speedoVal').textContent=Math.round(spd);
@@ -886,6 +2010,81 @@ function animSpd(){
   }
 }
 
+  // McKinsey 7S Radar Chart
+const radarCtx = document.getElementById('radarChart');
+if(radarCtx){
+  const isDark = document.documentElement.getAttribute('data-theme')==='dark';
+  const tc = isDark ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)';
+  new Chart(radarCtx, {
+    type: 'radar',
+    data: {
+      labels: ['Strategiya','Struktur','Sistem','Dəyərlər','Bacarıqlar','Heyət','Üslub'],
+      datasets: [
+        {
+          label: 'Cari Vəziyyət',
+          data: [2, 3, 2, 4, 3, 3, 3],
+          backgroundColor: 'rgba(232,0,29,0.1)',
+          borderColor: 'rgba(232,0,29,0.8)',
+          borderWidth: 2,
+          pointBackgroundColor: 'rgba(232,0,29,1)',
+          pointRadius: 5,
+        },
+        {
+          label: 'Hədəf Vəziyyət',
+          data: [4, 4, 5, 5, 4, 4, 4],
+          backgroundColor: 'rgba(255,150,0,0.06)',
+          borderColor: 'rgba(255,150,0,0.4)',
+          borderWidth: 2,
+          borderDash: [6,3],
+          pointBackgroundColor: 'rgba(255,150,0,0.6)',
+          pointRadius: 4,
+        }
+      ]
+    },
+    options: {
+      responsive: true, maxWidth: 200,
+      maintainAspectRatio: true,
+      scales: {
+        r: {
+          min: 0, max: 5, ticks: { stepSize: 1, display: false },
+          grid: { color: isDark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.08)' },
+          pointLabels: { color: tc, font: { family: 'Montserrat', size: 12, weight: '700' } },
+          angleLines: { color: isDark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.08)' },
+        }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: isDark ? 'rgba(20,20,25,.95)' : 'rgba(255,255,255,.95)',
+          titleColor: isDark ? '#F2EDE6' : '#1A1510',
+          bodyColor: isDark ? '#9990a0' : '#6B6258',
+          borderColor: isDark ? 'rgba(255,255,255,.1)' : 'rgba(0,0,0,.1)',
+          borderWidth: 1,
+          titleFont: { family: 'Montserrat', weight: '800' },
+          bodyFont: { family: 'Montserrat' },
+          padding: 12, cornerRadius: 0
+        }
+      },
+      animation: { duration: 1400 }
+    }
+  });
+}
+
+// Animate 7S bars
+setTimeout(() => {
+  document.querySelectorAll('.s7-bar-fill[data-w]').forEach(el => {
+    el.style.width = el.dataset.w + '%';
+  });
+}, 800);
+  
+  // Animate maturity bars
+setTimeout(() => {
+  document.querySelectorAll('.mat-fill[data-w]').forEach(el => {
+    el.style.width = el.dataset.w + '%';
+    el.style.background = el.dataset.color;
+  });
+}, 900);
+  
 /* ===== CHARTS ===== */
 let pie,bar;
 function buildCharts(){
